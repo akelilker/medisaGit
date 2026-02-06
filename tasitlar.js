@@ -1260,9 +1260,9 @@
     // Kullanıcı varsa (assignedUserId var veya tahsisKisi var) normal göster, yoksa kırmızı link göster
     if (assignedUserId || (assignedUserName && assignedUserName.trim())) {
       const displayName = escapeHtml(assignedUserName).replace(/ /g, '&nbsp;');
-      html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Kullanıcı:</span><span class="detail-row-value detail-user-value">${displayName}</span></div>`;
+      html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Kullanıcı</span><span class="detail-row-value detail-user-value">: ${displayName}</span></div>`;
     } else {
-      html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Kullanıcı:</span><span class="detail-row-value detail-user-empty" onclick="event.stopPropagation(); if (window.currentDetailVehicleId) openEventModal('kullanici', window.currentDetailVehicleId);">Kullanıcı Eklemek İçin +</span></div>`;
+      html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Kullanıcı</span><span class="detail-row-value detail-user-empty" onclick="event.stopPropagation(); if (window.currentDetailVehicleId) openEventModal('kullanici', window.currentDetailVehicleId);">: Kullanıcı Eklemek İçin +</span></div>`;
     }
 
     // Şube
@@ -1271,35 +1271,35 @@
     const branchName = branchId
       ? (branches.find(b => b.id === branchId)?.name || '')
       : 'Tahsis Edilmemiş';
-    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Şube:</span><span class="detail-row-value">${escapeHtml(branchName)}</span></div>`;
+    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Şube</span><span class="detail-row-value">: ${escapeHtml(branchName)}</span></div>`;
 
     // Taşıt Tipi
     const vehicleType = vehicle.vehicleType || '';
-    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Taşıt Tipi:</span><span class="detail-row-value">${escapeHtml(getVehicleTypeLabel(vehicleType))}</span></div>`;
+    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Taşıt Tipi</span><span class="detail-row-value">: ${escapeHtml(getVehicleTypeLabel(vehicleType))}</span></div>`;
     
     // Üretim Yılı
     const year = vehicle.year || '';
-    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Üretim Yılı:</span><span class="detail-row-value">${escapeHtml(year)}</span></div>`;
+    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Üretim Yılı</span><span class="detail-row-value">: ${escapeHtml(year)}</span></div>`;
     
     // Km gösterimi - guncelKm varsa "Km: ***", yoksa "Km (Alındığı Tarih): ***"
     if (vehicle.guncelKm) {
       const formattedKm = formatNumber(vehicle.guncelKm);
-      html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Km:</span><span class="detail-row-value">${escapeHtml(formattedKm)}</span></div>`;
+      html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Km</span><span class="detail-row-value">: ${escapeHtml(formattedKm)}</span></div>`;
     } else {
       const km = vehicle.km || '';
       const formattedKm = km ? formatNumber(km) : '';
-      html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Km (Alındığı Tarih):</span><span class="detail-row-value">${escapeHtml(formattedKm || '-')}</span></div>`;
+      html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Km (Alındığı Tarih)</span><span class="detail-row-value">: ${escapeHtml(formattedKm || '-')}</span></div>`;
     }
     
     // Şanzıman
     const transmission = vehicle.transmission || '';
     const transmissionLabel = transmission === 'otomatik' ? 'Otomatik' : transmission === 'manuel' ? 'Manuel' : '';
-    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Şanzıman:</span><span class="detail-row-value">${escapeHtml(transmissionLabel)}</span></div>`;
+    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Şanzıman</span><span class="detail-row-value">: ${escapeHtml(transmissionLabel)}</span></div>`;
     
     // Tramer Kaydı
     if (vehicle.tramer === 'var' && vehicle.tramerRecords && vehicle.tramerRecords.length > 0) {
       // Tramer "var" ise alt satırda kayıtlar
-      html += `<div class="detail-row"><span class="detail-row-label">Tramer Kaydı:</span><span class="detail-row-value">`;
+      html += `<div class="detail-row"><span class="detail-row-label">Tramer Kaydı</span><span class="detail-row-value">: `;
       vehicle.tramerRecords.forEach((record, index) => {
         if (index > 0) html += '<br>';
         html += `${escapeHtml(record.date)} - ${escapeHtml(record.amount)}`;
@@ -1323,11 +1323,11 @@
       html += `</span></div>`;
     } else {
       // Tramer "yok" ise aynı satırda "Yoktur" göster
-      html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Tramer Kaydı:</span><span class="detail-row-value">Yoktur.</span></div>`;
+      html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Tramer Kaydı</span><span class="detail-row-value">: Yoktur.</span></div>`;
     }
     
     // Kaporta Durumu
-    html += `<div class="detail-row"><span class="detail-row-label">Kaporta Durumu:</span><span class="detail-row-value">`;
+    html += `<div class="detail-row"><span class="detail-row-label">Kaporta Durumu</span><span class="detail-row-value">: `;
     if (vehicle.boya === 'var' && vehicle.boyaliParcalar) {
       html += 'Aşağıdaki şemada belirtilmiştir.';
     } else {
@@ -1357,42 +1357,42 @@
     const sigortaDate = vehicle.sigortaDate || '';
     const sigortaWarning = checkDateWarnings(sigortaDate);
     const sigortaDisplay = formatDateForDisplay(sigortaDate);
-    html += `<div class="detail-row"><span class="detail-row-label">Sigorta Bitiş Tarihi:</span><span class="detail-row-value ${sigortaWarning.class}">${escapeHtml(sigortaDisplay || '-')}</span></div>`;
+    html += `<div class="detail-row"><span class="detail-row-label">Sigorta Bitiş Tarihi</span><span class="detail-row-value ${sigortaWarning.class}">: ${escapeHtml(sigortaDisplay || '-')}</span></div>`;
     
     // Kasko bitiş tarihi
     const kaskoDate = vehicle.kaskoDate || '';
     const kaskoWarning = checkDateWarnings(kaskoDate);
     const kaskoDisplay = formatDateForDisplay(kaskoDate);
-    html += `<div class="detail-row"><span class="detail-row-label">Kasko Bitiş Tarihi:</span><span class="detail-row-value ${kaskoWarning.class}">${escapeHtml(kaskoDisplay || '-')}</span></div>`;
+    html += `<div class="detail-row"><span class="detail-row-label">Kasko Bitiş Tarihi</span><span class="detail-row-value ${kaskoWarning.class}">: ${escapeHtml(kaskoDisplay || '-')}</span></div>`;
     
     // Muayene bitiş tarihi
     const muayeneDate = vehicle.muayeneDate || '';
     const muayeneWarning = checkDateWarnings(muayeneDate);
     const muayeneDisplay = formatDateForDisplay(muayeneDate);
-    html += `<div class="detail-row"><span class="detail-row-label">Muayene Bitiş Tarihi:</span><span class="detail-row-value ${muayeneWarning.class}">${escapeHtml(muayeneDisplay || '-')}</span></div>`;
+    html += `<div class="detail-row"><span class="detail-row-label">Muayene Bitiş Tarihi</span><span class="detail-row-value ${muayeneWarning.class}">: ${escapeHtml(muayeneDisplay || '-')}</span></div>`;
     
     // Yedek Anahtar
     const anahtar = vehicle.anahtar || '';
     const anahtarLabel = anahtar === 'var' ? (vehicle.anahtarNerede || 'Var') : 'Yoktur.';
-    html += `<div class="detail-row"><span class="detail-row-label">Yedek Anahtar:</span><span class="detail-row-value">${escapeHtml(anahtarLabel)}</span></div>`;
+    html += `<div class="detail-row"><span class="detail-row-label">Yedek Anahtar</span><span class="detail-row-value">: ${escapeHtml(anahtarLabel)}</span></div>`;
     
     // Kredi/Rehin
     const kredi = vehicle.kredi || '';
     const krediLabel = kredi === 'var' ? (vehicle.krediDetay || 'Var') : 'Yoktur.';
-    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Kredi/Rehin:</span><span class="detail-row-value">${escapeHtml(krediLabel)}</span></div>`;
+    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Kredi/Rehin</span><span class="detail-row-value">: ${escapeHtml(krediLabel)}</span></div>`;
     
     // Yazlık/ Kışlık Lastik
     const lastikDurumu = vehicle.lastikDurumu || '';
     const lastikLabel = lastikDurumu === 'var' ? (vehicle.lastikAdres || 'Var') : 'Yoktur.';
-    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Yazlık/ Kışlık Lastik:</span><span class="detail-row-value">${escapeHtml(lastikLabel)}</span></div>`;
+    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Yazlık/ Kışlık Lastik</span><span class="detail-row-value">: ${escapeHtml(lastikLabel)}</span></div>`;
     
     // UTTS
     const utts = vehicle.uttsTanimlandi ? 'Evet' : 'Hayır';
-    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">UTTS:</span><span class="detail-row-value">${escapeHtml(utts)}</span></div>`;
+    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">UTTS</span><span class="detail-row-value">: ${escapeHtml(utts)}</span></div>`;
     
     // Taşıt Takip
     const takipCihazi = vehicle.takipCihaziMontaj ? 'Evet' : 'Hayır';
-    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Taşıt Takip:</span><span class="detail-row-value">${escapeHtml(takipCihazi)}</span></div>`;
+    html += `<div class="detail-row detail-row-inline"><span class="detail-row-label">Taşıt Takip</span><span class="detail-row-value">: ${escapeHtml(takipCihazi)}</span></div>`;
     
     rightEl.innerHTML = html;
   }
