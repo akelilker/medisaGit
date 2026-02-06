@@ -380,13 +380,12 @@
 }
 .modal-close:hover { color: #fff; }
 
-/* Header altı: sol ok + Ayarlar (Taşıtlar modalı okları ile aynı stil), 3 satır yukarıda */
+/* Header altı: sol ok + Ayarlar (Taşıtlar modalı okları ile aynı stil) */
 .ayarlar-back-bar {
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    margin-top: -2em; /* 3 satır kadar yukarı (header'a yaklaştır) */
     background: #080d16;
     flex-shrink: 0;
 }

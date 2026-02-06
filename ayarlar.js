@@ -998,25 +998,6 @@
       const userFormModal = document.getElementById('user-form-modal');
       const dataModal = document.getElementById('data-management-modal');
   
-      /* Geri ok butonuna tıklanınca Ayarlar menüsüne dön */
-      const backBtn = e.target.closest('.ayarlar-back-btn');
-      if (backBtn) {
-        e.preventDefault();
-        e.stopPropagation();
-        const bar = backBtn.closest('.ayarlar-back-bar');
-        if (bar) {
-          const modal = bar.closest('#branch-modal, #user-modal, #data-management-modal');
-          if (modal) {
-            if (modal.id === 'branch-modal') closeBranchManagement();
-            else if (modal.id === 'user-modal') closeUserManagement();
-            else if (modal.id === 'data-management-modal') closeDataManagement();
-            const menu = document.getElementById('settings-menu');
-            if (menu) menu.classList.add('open');
-          }
-        }
-        return;
-      }
-  
       if (branchModal && branchModal.classList.contains('active') && e.target === branchModal) {
         closeBranchManagement();
       }
