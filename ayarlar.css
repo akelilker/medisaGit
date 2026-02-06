@@ -384,10 +384,11 @@
 .ayarlar-back-bar {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     padding: 8px 16px;
     background: #080d16;
     flex-shrink: 0;
+    margin-top: -16px;
 }
 .ayarlar-back-btn {
     background: transparent;
