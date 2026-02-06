@@ -10,7 +10,6 @@
   var reportStatus = '';
   var branches = [];
   var dimTimeout = null;
-  var currentRecords = [];
 
   function getMonthOptions() {
     var opts = [];
@@ -179,11 +178,9 @@
     var tbody = document.getElementById('report-tbody');
     if (!tbody) return;
     tbody.innerHTML = '';
-    currentRecords = records;
     records.forEach(function (r) {
       tbody.appendChild(createReportRow(r));
     });
-    updateBulkWhatsAppButton();
   }
 
   function sendWhatsApp(phone, name, plaka, donem) {
@@ -192,44 +189,6 @@
     var text = 'Sn. ' + (name || '') + ', ' + (donem || '') + ' Dönemi İçin; Kullanımınıza Tahsis Edilen (' + (plaka || '') + ') Plakalı Taşıt İle İlgili; Uygulamamız Üzerinden Bilgi Güncellemesi Yapmanızı Rica Ederiz.';
     var url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(text);
     window.open(url, '_blank');
-  }
-
-  function getPendingRecords() {
-    return currentRecords.filter(function (r) {
-      return !r.girdi && r.telefon;
-    });
-  }
-
-  function updateBulkWhatsAppButton() {
-    var btn = document.getElementById('report-bulk-whatsapp');
-    if (!btn) return;
-    var pending = getPendingRecords();
-    btn.disabled = pending.length === 0;
-    btn.title = pending.length > 0
-      ? pending.length + ' bildirmeyen kullanıcıya toplu WhatsApp gönder'
-      : 'Bildirmeyen kullanıcı yok';
-  }
-
-  function sendBulkWhatsApp() {
-    var pending = getPendingRecords();
-    if (pending.length === 0) {
-      alert('Bildirmeyen kullanıcı bulunamadı.');
-      return;
-    }
-    var confirmed = confirm(
-      pending.length + ' bildirmeyen kullanıcıya WhatsApp mesajı gönderilecek.\n\n' +
-      'Her kullanıcı için yeni bir WhatsApp penceresi açılacaktır.\n' +
-      'Tarayıcınız birden fazla pencere açılmasına izin vermelidir.\n\n' +
-      'Devam etmek istiyor musunuz?'
-    );
-    if (!confirmed) return;
-
-    var delay = 600;
-    pending.forEach(function (r, i) {
-      setTimeout(function () {
-        sendWhatsApp(r.telefon, r.surucu_adi, r.plaka, reportPeriod);
-      }, i * delay);
-    });
   }
 
   function loadPendingRequests() {
@@ -350,9 +309,6 @@
 
     var btnExport = document.getElementById('report-export');
     if (btnExport) btnExport.addEventListener('click', exportExcel);
-
-    var btnBulkWa = document.getElementById('report-bulk-whatsapp');
-    if (btnBulkWa) btnBulkWa.addEventListener('click', sendBulkWhatsApp);
   }
 
   if (document.readyState === 'loading') {
