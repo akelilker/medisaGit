@@ -171,11 +171,31 @@
 
 .detail-row {
     display: flex;
-    flex-direction: column;
-    gap: 0.5px; /* Daha da azaltÄ±ldÄ± (1px â†’ 0.5px) */
+    flex-direction: row;
+    align-items: baseline;
+    gap: 4px; /* Daha da azaltÄ±ldÄ± (1px â†’ 0.5px) */
     padding: 2px 0; /* 2px Ã¼st, 2px alt (4px 0 â†’ 2px 0) */
     border-bottom: none; /* Yatay Ã§izgiler kaldÄ±rÄ±ldÄ± */
-    min-width: 0; /* Flex item'in kÃ¼Ã§Ã¼lmesine izin ver */
+    min-width: 0;
+    flex-wrap: wrap;
+}
+
+/* Tramer "var" çoklu kayıt: label+colon üstte, value altta */
+.detail-row-block {
+    flex-direction: column !important;
+    gap: 0.5px !important;
+    align-items: flex-start !important;
+}
+.detail-row-block .detail-row-header {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.detail-row-colon {
+    flex-shrink: 0;
+    white-space: nowrap;
+    color: inherit;
 }
 
 /* Boya ÅŸemasÄ± container - Ã¼st satÄ±rdan boÅŸluk kaldÄ±rÄ±ldÄ± */
@@ -242,11 +262,11 @@
     padding-bottom: 0 !important;
 }
 
-/* Kredi/Rehin, UTTS, Takip CihazÄ± - aynÄ± satÄ±rda (yatay) */
+/* detail-row-inline: row zaten varsayılan, gap override */
 .detail-row-inline {
-    flex-direction: row !important; /* Yatay hizalama */
-    align-items: baseline; /* Metin taban Ã§izgisinde hizala */
-    gap: 8px; /* Etiket ile aÃ§Ä±klama arasÄ± boÅŸluk */
+    flex-direction: row !important;
+    align-items: baseline !important;
+    gap: 4px !important;
 }
 
 .detail-row-inline .detail-row-label {
@@ -1683,17 +1703,16 @@
     text-overflow: ellipsis !important;
   }
   
-  /* Mobil taşıt detay etiketler: +1pt, maks 2 satır, dar alanda 1.5pt küçülür */
+  /* Mobil taşıt detay etiketler: max-width kaldırıldı - boş alan değerlendirilir */
   .detail-row-label,
   .detail-row-inline .detail-row-label {
-    font-size: clamp(14px, 4.5vw, 16px) !important; /* Fluid: dar alanda 14px, genişte 16px */
+    font-size: clamp(14px, 4.5vw, 16px) !important;
     display: -webkit-box !important;
     -webkit-line-clamp: 2 !important;
     line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
-    max-width: 45% !important;
-    flex-shrink: 1 !important;
+    flex-shrink: 0 !important; /* Gereksiz wrap önlenir */
     white-space: normal !important;
     word-break: break-word !important;
   }
