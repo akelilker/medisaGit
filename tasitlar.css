@@ -1492,7 +1492,9 @@
 }
 
 #event-menu-list button {
-  transition: font-size 0.2s ease, border-color 0.2s ease, border-width 0.2s ease;
+  transition: outline 0.2s ease, font-weight 0.2s ease;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
   text-align: center !important; /* Buton metni ortalÄ± - JavaScript'teki text-align: left'i override eder */
   width: calc(100% - 20px) !important; /* SaÄŸ ve soldan 10px daralt (toplam 20px) - TÃ¼m butonlar aynÄ± geniÅŸlikte */
   max-width: calc(100% - 20px) !important; /* Maksimum geniÅŸlik container'a gÃ¶re - 20px daralt */
@@ -1503,8 +1505,8 @@
 }
 
 #event-menu-list button:hover {
-  font-size: 15px !important; /* Metin büyür */
-  border-width: 2px !important; /* Çerçeve belirginleşir */ /* 14px â†’ 15px */
+  outline-color: rgba(255, 255, 255, 0.4);
+  font-weight: 700 !important; /* 14px â†’ 15px */
 }
 
 /* Kaza ModalÄ± - Kaporta ÅžemasÄ± Yatayda OrtalÄ± */

@@ -222,6 +222,9 @@ body::-webkit-scrollbar,
   .login-page .hero-logo img {
     width: 100% !important;
   }
+  .driver-user-name-center {
+    font-size: 14.5px;
+  }
 }
 
 /* Scroll alanı öğelerinde üst çizgi yok */
@@ -519,11 +522,10 @@ body::-webkit-scrollbar,
   opacity: 0 !important;
 }
 
-/* YENİ BUTONLAR (Bakım/Kaza Bildir) – yan yana eşit kutular, üstte simge altta metin */
+/* YENİ BUTONLAR (Bakım/Kaza Bildir) – alt alta eşit genişlik (KM input ile uyumlu) */
 .driver-report-actions {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: stretch;
   gap: 12px;
 }

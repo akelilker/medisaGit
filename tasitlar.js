@@ -1398,6 +1398,27 @@
   }
 
   /**
+   * Kaporta SVG parça ID'lerine göre okunabilir isim döndürür (kaporta.svg ile uyumlu)
+   */
+  function getKaportaPartNames() {
+    return {
+      'on-tampon': 'Ön Tampon',
+      'arka-tampon': 'Arka Tampon',
+      'kaput': 'Kaput',
+      'bagaj': 'Bagaj Kapağı',
+      'sag-on-kapi': 'Sağ Ön Kapı',
+      'sol-on-kapi': 'Sol Ön Kapı',
+      'sag-arka-kapi': 'Sağ Arka Kapı',
+      'sol-arka-kapi': 'Sol Arka Kapı',
+      'sag-on-camurluk': 'Sağ Ön Çamurluk',
+      'sol-on-camurluk': 'Sol Ön Çamurluk',
+      'sag-arka-camurluk': 'Sağ Arka Çamurluk',
+      'sol-arka-camurluk': 'Sol Arka Çamurluk',
+      'tavan': 'Tavan'
+    };
+  }
+
+  /**
    * Boya şemasını detay ekranında render et (readonly)
    */
   function renderBoyaSchemaDetail(vehicle) {
@@ -1454,27 +1475,7 @@
         svgClone.style.marginLeft = isMobile ? '0' : '10px'; /* Mobilde ortada kalsın */
         svgClone.style.position = 'relative'; /* Görünürlük için */
         
-        // Parça isimleri mapping
-        const partNames = {
-          'onotampon': 'Ön Tampon',
-          'arkatampon': 'Arka Tampon',
-          'kaput': 'Kaput',
-          'bagaj': 'Bagaj Kapağı',
-          'solon': 'Sol Ön Kapı',
-          'sagon': 'Sağ Ön Kapı',
-          'solarka': 'Sol Arka Kapı',
-          'sagarka': 'Sağ Arka Kapı',
-          'solcam': 'Sol Çamurluk',
-          'sagcam': 'Sağ Çamurluk',
-          'soloncam': 'Sol Ön Çamurluk',
-          'sagoncam': 'Sağ Ön Çamurluk',
-          'solarkacam': 'Sol Arka Çamurluk',
-          'sagarkacam': 'Sağ Arka Çamurluk',
-          'ontavan': 'Ön Tavan',
-          'arkatavan': 'Arka Tavan',
-          'solcamurluk': 'Sol Çamurluk',
-          'sagcamurluk': 'Sağ Çamurluk'
-        };
+        const partNames = getKaportaPartNames();
         
         // Önce TÜM parçaları koyu gri yap (varsayılan orijinal renk)
         const allParts = svgClone.querySelectorAll('path[id]');
@@ -2173,8 +2174,8 @@
         paths.forEach(part => {
           const partId = part.getAttribute('id');
           const state = part.dataset.state;
-          if (state === 'degisen') {
-            newDamages[partId] = 'degisen';
+          if (state === 'boyali' || state === 'degisen') {
+            newDamages[partId] = state;
           }
         });
       }
@@ -2191,6 +2192,9 @@
     Object.keys(newDamages).forEach(partId => {
       vehicle.boyaliParcalar[partId] = newDamages[partId];
     });
+    if (Object.keys(newDamages).length > 0) {
+      vehicle.boya = 'var';
+    }
     
     const event = {
       id: Date.now().toString(),
@@ -2901,15 +2905,32 @@
       }
     } else if (tabType === 'kaza') {
       const kazaEvents = events.filter(e => e.type === 'kaza');
+      const partNames = getKaportaPartNames();
       if (kazaEvents.length === 0) {
         html = '<div style="text-align: center; color: #888; padding: 20px;">Kaza kaydı bulunmamaktadır.</div>';
       } else {
         kazaEvents.forEach(event => {
           const hasarStr = event.data?.hasarTutari ? ` | Hasar Tutarı: ${escapeHtml(event.data.hasarTutari)}` : '';
           const aciklamaHtml = event.data?.aciklama ? `<div style="color: #aaa; font-size: 13px; margin-top: 4px;">${escapeHtml(event.data.aciklama)}</div>` : '';
+          let parcalarHtml = '';
+          const hasarParcalari = event.data?.hasarParcalari;
+          if (hasarParcalari && typeof hasarParcalari === 'object' && Object.keys(hasarParcalari).length > 0) {
+            const boyaliList = [];
+            const degisenList = [];
+            Object.keys(hasarParcalari).forEach(partId => {
+              const partName = partNames[partId] || partId;
+              if (hasarParcalari[partId] === 'boyali') boyaliList.push(partName);
+              else if (hasarParcalari[partId] === 'degisen') degisenList.push(partName);
+            });
+            const parts = [];
+            if (boyaliList.length) parts.push(`Boyalı: ${boyaliList.join(', ')}`);
+            if (degisenList.length) parts.push(`Değişen: ${degisenList.join(', ')}`);
+            if (parts.length) parcalarHtml = `<div style="color: #aaa; font-size: 13px; margin-top: 4px;">${escapeHtml(parts.join(' | '))}</div>`;
+          }
           html += `<div class="history-item" style="padding: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
             <div style="font-weight: 600; color: #e0e0e0; margin-bottom: 4px;">${escapeHtml(event.date)}</div>
             <div style="color: #aaa; font-size: 13px;">Kullanıcı: ${escapeHtml(event.data?.surucu || '-')}${hasarStr}</div>
+            ${parcalarHtml}
             ${aciklamaHtml}
           </div>`;
         });

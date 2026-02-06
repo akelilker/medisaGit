@@ -449,7 +449,7 @@
 .data-management-text-btn {
     background: none;
     border: none;
-    color: #888; /* "Yeni Kullanıcı Ekle" ile aynı renk */
+    color: #b5b9c0; /* Daha açık gri - okunaklı */
     padding: 8px 0;
     cursor: pointer;
     font-weight: 600;
