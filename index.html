@@ -320,7 +320,7 @@
         </div>
 
         <div id="branch-modal" class="modal-overlay ayarlar-modal-overlay">
-            <div class="modal-container">
+            <div class="modal-container" onclick="if(event.target.closest('.ayarlar-back-btn')) { event.stopPropagation(); closeBranchManagement(); document.getElementById('settings-menu')?.classList.add('open'); }">
                 <div class="modal-header">
                     <h2>ŞUBE YÖNETİMİ</h2>
                     <button class="modal-close" onclick="closeBranchManagement()">
@@ -378,7 +378,7 @@
         </div>
 
         <div id="user-modal" class="modal-overlay ayarlar-modal-overlay">
-            <div class="modal-container">
+            <div class="modal-container" onclick="if(event.target.closest('.ayarlar-back-btn')) { event.stopPropagation(); closeUserManagement(); document.getElementById('settings-menu')?.classList.add('open'); }">
                 <div class="modal-header">
                     <h2>KULLANICI YÖNETİMİ</h2>
                     <button class="modal-close" onclick="closeUserManagement()">
@@ -475,7 +475,7 @@
         </div>
 
         <div id="data-management-modal" class="modal-overlay ayarlar-modal-overlay">
-            <div class="modal-container">
+            <div class="modal-container" onclick="if(event.target.closest('.ayarlar-back-btn')) { event.stopPropagation(); closeDataManagement(); document.getElementById('settings-menu')?.classList.add('open'); }">
                 <div class="modal-header">
                     <h2>VERİ YÖNETİMİ</h2>
                     <button class="modal-close" onclick="closeDataManagement()">
