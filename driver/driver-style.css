@@ -2131,6 +2131,44 @@ body::-webkit-scrollbar,
     margin-top: 3px !important;
   }
 
+  /* Foto 4: Kullanıcı adı-plaka arası boşluk yarıya (12px -> 6px) */
+  .dashboard-page .driver-vehicles-list {
+    margin-top: -6px !important;
+  }
+  .dashboard-page .driver-multi-vehicle-wrap .driver-plate-row {
+    margin-bottom: 6px !important;
+  }
+
+  /* Foto 4: KM input dikey yükseklik %15 daralsın */
+  .dashboard-page .vehicle-card .form-group input.driver-km-input,
+  .dashboard-page .vehicle-card .form-group input.driver-km-input:invalid,
+  .dashboard-page .vehicle-card .form-group input.driver-km-input:placeholder-shown {
+    padding: 4px 16px !important;
+  }
+
+  /* Foto 4: Bakım/Kaza – tıklanmamış durumda da genişlemiş genişlikte (layout shift yok) */
+  .dashboard-page .driver-report-actions {
+    flex-direction: column !important;
+  }
+  .dashboard-page .driver-report-item {
+    flex: none;
+    width: 100%;
+  }
+  .dashboard-page .driver-report-btn {
+    min-height: 61px !important;
+    padding: 5px 12px !important;
+  }
+
+  /* Foto 4: Kaza/bakım tıklayınca gelen inputların dikey yükseklikleri %10 daralsın */
+  .dashboard-page .driver-report-block .form-group input,
+  .dashboard-page .driver-report-block .form-group textarea {
+    padding: 8px 10px !important;
+  }
+  .dashboard-page .driver-report-block .form-group textarea.driver-report-textarea-auto {
+    min-height: 2em !important;
+    height: 2em !important;
+  }
+
 }
 
 /* Masaüstü (641px+): Bakım/Kaza butonları – 66px yükseklik, 2px dikey boşluk (mobil kurallardan sonra uygulanması için ayrı blok) */
