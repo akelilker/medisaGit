@@ -339,7 +339,7 @@
 }
 
 /* Genel Modal Header Stili */
-.modal-header {
+.ayarlar-modal-overlay .modal-header {
     background: linear-gradient(180deg, rgba(255, 0, 0, 0.30) 0%, rgba(255, 0, 0, 0.22) 25%, rgba(255, 0, 0, 0.16) 50%, rgba(255, 0, 0, 0.10) 75%, transparent 100%);
     padding: 8px 20px;
     height: 60px;
@@ -349,6 +349,9 @@
     flex-shrink: 0;
     position: relative;
     border-bottom: none !important;
+}
+.ayarlar-modal-overlay .modal-header h2 {
+    text-align: center;
 }
 
 /* Header action buttons: form altında */
@@ -377,6 +380,40 @@
 }
 .modal-close:hover { color: #fff; }
 
+/* Header altı: sol ok + Ayarlar (Taşıtlar modalı okları ile aynı stil), 3 satır yukarıda */
+.ayarlar-back-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    margin-top: -2em; /* 3 satır kadar yukarı (header'a yaklaştır) */
+    background: #080d16;
+    flex-shrink: 0;
+}
+.ayarlar-back-btn {
+    background: transparent;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+.ayarlar-back-btn svg {
+    width: 20px;
+    height: 20px;
+}
+.ayarlar-back-btn:hover {
+    color: #fff;
+}
+.ayarlar-back-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+}
+
 /* Modal Body */
 #branch-modal .modal-body,
 #user-modal .modal-body,
@@ -389,6 +426,16 @@
     padding: 16px;
     min-height: 0;
     scrollbar-width: none;
+}
+
+/* Ayarlar içi bölümler: sola kaymayı önle, sol/sağ eşit */
+#branch-modal .modal-body > div,
+#user-modal .modal-body > div {
+    box-sizing: border-box;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 16px;
 }
 
 #branch-modal .modal-body::-webkit-scrollbar,
@@ -407,28 +454,44 @@
     padding: 8px 0;
     cursor: pointer;
     font-weight: 600;
-    font-size: 15px; /* 1px büyütüldü */
+    font-size: 17px; /* 2 punto büyütüldü (15+2) */
     text-align: center;
-    width: auto; /* İçeriğe göre genişlik */
-    display: block; /* Alt alta olsun */
+    width: auto;
+    display: block;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 12px auto; /* Yatayda ortala, alt boşluk */
+    margin: 0 auto 42px auto; /* Yatayda ortala, aralarındaki boşluk 12+30=42px */
     transition: font-size 0.2s;
-    height: 32px; /* Sabit yükseklik - taşma engellendi */
-    overflow: hidden; /* Metin büyürse taşma gizlensin */
-    line-height: 1.2; /* Sabit line-height */
+    height: 32px;
+    overflow: hidden;
+    line-height: 1.2;
     box-sizing: border-box;
 }
 
-/* Veri yönetimi butonlarını ortalamak için parent div */
-.modal-body > div:has(.data-management-text-btn) {
+/* Veri Yönetimi: Yedek Al / Yedekten Geri Yükle yatay ve dikeyde ortalanmış */
+#data-management-modal .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-height: 0;
+}
+#data-management-modal .data-management-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    padding: 16px;
+    flex: 1;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .data-management-text-btn:last-child { margin-bottom: 0; }
 .data-management-text-btn:hover { 
-    font-size: 16px; /* 1px büyütüldü */
+    font-size: 18px;
 }
 
 /* Ayarlar Menüsü ve Listeler */
@@ -1142,6 +1205,17 @@ input.settings-form-input:-moz-autofill,
                      0 0 15px rgba(255, 255, 255, 0.08) !important;
     }
     
+    /* Geri çubuğu: Taşıtlar modalı gibi büyük tıklanabilir alan */
+    .ayarlar-back-btn {
+        padding: 10px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+    }
+    .ayarlar-back-btn svg {
+        width: 24px !important;
+        height: 24px !important;
+    }
+    
     /* Kullanıcı / Şube / Veriler: modal'lar – style-core.css ile uyumlu */
     #branch-modal.modal-overlay,
     #user-modal.modal-overlay,
@@ -1268,8 +1342,6 @@ input.settings-form-input:-moz-autofill,
         display: none !important;
         content: none !important;
     }
-    
-    #data-management-modal .data-management-text-btn { text-align: right !important; }
 }
 
 /* === MASAÜSTÜ AYARLAR === */

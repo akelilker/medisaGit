@@ -587,11 +587,12 @@ html { overflow-x: hidden; }
 }
 .modal-overlay .modal-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 16px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
+  position: relative;
 }
 .modal-overlay .modal-header h2 {
   margin: 0;
@@ -599,8 +600,11 @@ html { overflow-x: hidden; }
   font-weight: 700;
   color: #f0f0f0;
   letter-spacing: 1px;
+  text-align: center;
 }
 .modal-overlay .modal-close {
+  position: absolute;
+  right: 16px;
   background: transparent;
   border: none;
   color: #888;
