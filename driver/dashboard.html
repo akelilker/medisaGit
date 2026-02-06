@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Dashboard - Medisa Kullanıcı</title>
+    <link rel="icon" type="image/svg+xml" href="/medisa/icon/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/medisa/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/medisa/icon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/medisa/icon/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/medisa/icon/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="/medisa/icon/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="/medisa/icon/icon-512x512.png">
+    <link rel="manifest" href="/medisa/manifest.json">
+    <meta name="theme-color" content="#080d16">
+    <meta name="msapplication-TileColor" content="#080d16">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Kullanıcı Paneli - Medisa">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/medisa/style-core.css">
+    <link rel="stylesheet" href="/medisa/driver/driver-style.css">
+</head>
+<body class="dashboard-page">
+    <div class="app-container driver-dashboard-container">
+        <div class="driver-header-fixed">
+            <div class="hero">
+                <div class="hero-logo">
+                    <img src="/medisa/icon/logo-header2.svg" alt="MEDISA" class="logo-small">
+                </div>
+                <div class="hero-title-wrap">
+                    <h1>TAŞIT YÖNETİM SİSTEMİ</h1>
+                    <p class="driver-panel-subtitle hero-panel-subtitle">KULLANICI PANELİ</p>
+                </div>
+                <div class="hero-spacer"></div>
+            </div>
+
+            <div class="driver-below-hero">
+                <div class="driver-below-hero-row">
+                    <button type="button" onclick="showHistory()" class="driver-btn-history" title="Geçmiş Kayıtlarım" aria-label="Geçmiş Kayıtlarım">
+                        <svg class="driver-btn-history-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </button>
+                    <span id="driver-user-name" class="driver-user-name-center"></span>
+                    <button type="button" onclick="logout()" class="driver-btn-logout" title="Çıkış" aria-label="Çıkış">
+                        <svg class="driver-btn-logout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <main class="content-wrap driver-content-wrap driver-scroll-area">
+            <div id="loading-spinner" class="driver-loading">
+                <div class="driver-spinner"></div>
+                <p>Veriler yükleniyor...</p>
+            </div>
+
+            <div id="vehicles-list" class="driver-vehicles-list"></div>
+
+            <div id="empty-state" class="driver-empty-state" style="display: none;">
+                <div class="driver-empty-icon">🚗</div>
+                <h3>Zimmetli Taşıt Bulunamadı</h3>
+                <p>Size Atanmış Taşıt Bulunmamaktadır. Lütfen Yöneticinizle İletişime Geçin.</p>
+            </div>
+        </main>
+
+        <a href="/medisa/" class="management-system-link" title="Yönetim Sistemi">
+            <span class="management-system-link-inner">
+                <svg class="management-system-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 6 9 12 15 18"></polyline>
+                </svg>
+                <span class="management-system-link-text">Yönetim Sistemi</span>
+            </span>
+        </a>
+        <footer id="app-footer">
+            <div class="footer-content">
+                <span class="version" id="version-display"></span>
+                <span class="brand"><img src="/medisa/icon/logo-footer.svg" alt="MEDISA" style="height: 12.5px; width: auto;"></span>
+                <span class="status status-ready">● Sistem Hazır</span>
+            </div>
+        </footer>
+
+        <div id="history-modal" class="driver-modal modal-overlay">
+        <div class="driver-modal-content modal-container">
+            <div class="modal-header">
+                <h2>Geçmiş Kayıtlarım</h2>
+                <button type="button" onclick="closeHistory()" class="modal-close" aria-label="Kapat">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+            </div>
+            <div class="modal-body">
+                <div class="history-filters">
+                    <div class="history-vehicle-dropdown-wrap">
+                        <label class="history-filter-label">Taşıt Seç:</label>
+                        <div class="history-vehicle-trigger" onclick="toggleHistoryVehicleDropdown(event)" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
+                            <span class="history-vehicle-trigger-text">Tüm Taşıtlar</span>
+                            <span class="history-vehicle-chevron">▾</span>
+                        </div>
+                        <input type="hidden" id="history-vehicle-filter" value="">
+                        <div id="history-vehicle-dropdown" class="history-vehicle-dropdown" role="listbox" style="display:none"></div>
+                    </div>
+                </div>
+                <div id="history-list" class="history-container"></div>
+            </div>
+        </div>
+        </div>
+
+        <div id="edit-request-modal" class="driver-modal modal-overlay">
+        <div class="driver-modal-content modal-container">
+            <div class="modal-header">
+                <h2>Düzeltme Talebi</h2>
+                <button type="button" onclick="closeEditRequest()" class="modal-close" aria-label="Kapat">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="driver-current-km">
+                    Mevcut KM: <strong id="current-km">0</strong>
+                </p>
+                <div class="form-group">
+                    <label>Yeni KM Değeri</label>
+                    <input type="number" id="new-km" placeholder="Örn: 54230">
+                </div>
+                <p class="driver-current-km">
+                    Mevcut Bakım: <strong id="current-bakim">-</strong>
+                </p>
+                <div class="form-group">
+                    <label>Yeni Bakım Açıklama</label>
+                    <textarea id="new-bakim" rows="2" placeholder="Boş bırakırsanız 'Yok' sayılır"></textarea>
+                </div>
+                <p class="driver-current-km">
+                    Mevcut Kaza: <strong id="current-kaza">-</strong>
+                </p>
+                <div class="form-group">
+                    <label>Yeni Kaza Açıklama</label>
+                    <textarea id="new-kaza" rows="2" placeholder="Boş bırakırsanız 'Yok' sayılır"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Düzeltme Sebebi</label>
+                    <textarea id="edit-reason" placeholder="Neden düzeltmek istiyorsunuz?" rows="4" required></textarea>
+                </div>
+                <button type="button" onclick="submitEditRequest()" class="btn-submit">Talep Gönder</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <script src="/medisa/driver/driver-script.js"></script>
+</body>
+</html>
