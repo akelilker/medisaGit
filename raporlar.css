@@ -673,6 +673,18 @@
     .report-view {
         padding: 1px 0;
     }
+    /* Raporlar modalı geri (ok) butonu: çerçevesiz ve arka plansız */
+    #reports-modal .stok-back-btn {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+    #reports-modal .stok-back-btn:focus,
+    #reports-modal .stok-back-btn:focus-visible {
+        outline: none !important;
+        box-shadow: none !important;
+    }
     /* Sol ok + Detay Ekleme satırı modal başlığına daha yakın; Detay Ekleme–butonlar arası boşluk yarıya */
     #reports-modal .reports-list-header-actions:not(:empty) {
         padding-top: 4px !important;
