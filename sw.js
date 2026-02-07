@@ -1,7 +1,7 @@
 // Service Worker - Medisa Taşıt Yönetim Sistemi
 // Version 1.0
 
-const CACHE_VERSION = 'medisa-v1.0';
+const CACHE_VERSION = 'medisa-v1.1';
 
 // Subpath desteği: /medisa/sw.js ise base = '/medisa', kök deploy'da base = ''
 function getBase() {
