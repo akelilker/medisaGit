@@ -1811,9 +1811,31 @@
           });
         });
       } else if (type === 'utts') {
-        // UTTS modal'ında radio button handler'ları modal açıldıktan sonra ekleniyor (aşağıda)
+        // UTTS modal'ında mevcut değeri yükle (click handler HTML onclick ile)
+        const radioBtns = modal.querySelectorAll('.radio-btn');
+        const vehicle = readVehicles().find(v => v.id === (vehicleId || window.currentDetailVehicleId));
+        radioBtns.forEach(b => b.classList.remove('active'));
+        if (vehicle) {
+          const durum = vehicle.uttsTanimlandi ? 'evet' : 'hayir';
+          const btn = Array.from(radioBtns).find(btn => btn.dataset.value === durum);
+          if (btn) btn.classList.add('active');
+        } else {
+          const hayirBtn = Array.from(radioBtns).find(btn => btn.dataset.value === 'hayir');
+          if (hayirBtn) hayirBtn.classList.add('active');
+        }
       } else if (type === 'takip') {
-        // Takip Cihaz modal'ında radio button handler'ları modal açıldıktan sonra ekleniyor (aşağıda)
+        // Takip Cihaz modal'ında mevcut değeri yükle (click handler HTML onclick ile)
+        const radioBtns = modal.querySelectorAll('.radio-btn');
+        const vehicle = readVehicles().find(v => v.id === (vehicleId || window.currentDetailVehicleId));
+        radioBtns.forEach(b => b.classList.remove('active'));
+        if (vehicle) {
+          const durum = vehicle.takipCihaziMontaj ? 'evet' : 'hayir';
+          const btn = Array.from(radioBtns).find(btn => btn.dataset.value === durum);
+          if (btn) btn.classList.add('active');
+        } else {
+          const hayirBtn = Array.from(radioBtns).find(btn => btn.dataset.value === 'hayir');
+          if (hayirBtn) hayirBtn.classList.add('active');
+        }
       } else if (type === 'bakim') {
         // Bakım modal'ında varsayılan kişi
         const bakimKisiInput = document.getElementById('bakim-kisi');
@@ -1839,54 +1861,6 @@
         // Modal'ı hemen aç
         modal.style.display = 'flex';
         modal.classList.add('active');
-        
-        // UTTS ve Takip modalları için event listener'ları modal açıldıktan sonra ekle
-        if (type === 'utts' || type === 'takip') {
-          requestAnimationFrame(() => {
-            const radioBtns = modal.querySelectorAll('.radio-btn');
-            if (radioBtns.length > 0) {
-              // Mevcut listener'ları kaldır ve yeniden ekle
-              radioBtns.forEach(btn => {
-                const newBtn = btn.cloneNode(true);
-                btn.parentNode.replaceChild(newBtn, btn);
-              });
-              
-              const freshRadioBtns = modal.querySelectorAll('.radio-btn');
-              const vehicle = readVehicles().find(v => v.id === (vehicleId || window.currentDetailVehicleId));
-              
-              // Mevcut değeri yükle
-              if (type === 'utts') {
-                if (vehicle) {
-                  const durum = vehicle.uttsTanimlandi ? 'evet' : 'hayir';
-                  const btn = Array.from(freshRadioBtns).find(btn => btn.dataset.value === durum);
-                  if (btn) btn.classList.add('active');
-                } else {
-                  const hayirBtn = Array.from(freshRadioBtns).find(btn => btn.dataset.value === 'hayir');
-                  if (hayirBtn) hayirBtn.classList.add('active');
-                }
-              } else if (type === 'takip') {
-                if (vehicle) {
-                  const durum = vehicle.takipCihaziMontaj ? 'evet' : 'hayir';
-                  const btn = Array.from(freshRadioBtns).find(btn => btn.dataset.value === durum);
-                  if (btn) btn.classList.add('active');
-                } else {
-                  const hayirBtn = Array.from(freshRadioBtns).find(btn => btn.dataset.value === 'hayir');
-                  if (hayirBtn) hayirBtn.classList.add('active');
-                }
-              }
-              
-              // Event listener'ları ekle
-              freshRadioBtns.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  freshRadioBtns.forEach(b => b.classList.remove('active'));
-                  this.classList.add('active');
-                });
-              });
-            }
-          });
-        }
         
         // Event menu'yu kapat (modal açıldıktan sonra)
         closeEventMenuModal();

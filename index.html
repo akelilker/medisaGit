@@ -1069,9 +1069,9 @@
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
                             <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">UTTS Tanımlandı mı:</label>
-                            <div class="radio-group" style="display: flex; gap: 8px;">
-                                <button class="radio-btn" data-value="evet" style="flex: 1; background: transparent; border: 1px solid rgba(255, 255, 255, 0.3); color: #ccc; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px;">Evet</button>
-                                <button class="radio-btn" data-value="hayir" style="flex: 1; background: transparent; border: 1px solid rgba(255, 255, 255, 0.3); color: #ccc; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px;">Hayır</button>
+                            <div class="radio-group" style="display: flex; gap: 8px; justify-content: flex-start;">
+                                <button class="radio-btn" data-value="evet" onclick="event.stopPropagation(); this.closest('.radio-group').querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active')); this.classList.add('active');" style="background: transparent; border: none; color: #28a745; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Evet</button>
+                                <button class="radio-btn" data-value="hayir" onclick="event.stopPropagation(); this.closest('.radio-group').querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active')); this.classList.add('active');" style="background: transparent; border: none; color: #e1061b; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Hayır</button>
                             </div>
                         </div>
                     </div>
@@ -1107,9 +1107,9 @@
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
                             <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Takip Cihazı Montajı:</label>
-                            <div class="radio-group" style="display: flex; gap: 8px;">
-                                <button class="radio-btn" data-value="evet" style="flex: 1; background: transparent; border: 1px solid rgba(255, 255, 255, 0.3); color: #ccc; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px;">Evet</button>
-                                <button class="radio-btn" data-value="hayir" style="flex: 1; background: transparent; border: 1px solid rgba(255, 255, 255, 0.3); color: #ccc; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px;">Hayır</button>
+                            <div class="radio-group" style="display: flex; gap: 8px; justify-content: flex-start;">
+                                <button class="radio-btn" data-value="evet" onclick="event.stopPropagation(); this.closest('.radio-group').querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active')); this.classList.add('active');" style="background: transparent; border: none; color: #28a745; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Evet</button>
+                                <button class="radio-btn" data-value="hayir" onclick="event.stopPropagation(); this.closest('.radio-group').querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active')); this.classList.add('active');" style="background: transparent; border: none; color: #e1061b; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Hayır</button>
                             </div>
                         </div>
                     </div>

@@ -15,6 +15,7 @@
     justify-content: flex-start !important;
     align-items: center !important;
     pointer-events: none !important;
+    padding-top: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     padding-bottom: 0 !important;
@@ -1549,7 +1550,9 @@
   /* Yedek Anahtar, Kredi, Lastik ModallarÄ± - Var/Yok ButonlarÄ± Stili */
   #anahtar-guncelle-modal .radio-btn,
   #kredi-guncelle-modal .radio-btn,
-  #lastik-guncelle-modal .radio-btn {
+  #lastik-guncelle-modal .radio-btn,
+  #utts-guncelle-modal .radio-btn,
+  #takip-cihaz-guncelle-modal .radio-btn {
     background: transparent !important;
     border: none !important;
     padding: 0 !important;
@@ -1561,13 +1564,17 @@
   
   #anahtar-guncelle-modal .radio-btn:hover,
   #kredi-guncelle-modal .radio-btn:hover,
-  #lastik-guncelle-modal .radio-btn:hover {
+  #lastik-guncelle-modal .radio-btn:hover,
+  #utts-guncelle-modal .radio-btn:hover,
+  #takip-cihaz-guncelle-modal .radio-btn:hover {
     font-size: 16px !important; /* Metin bÃ¼yÃ¼yebilir */
   }
   
   #anahtar-guncelle-modal .radio-group,
   #kredi-guncelle-modal .radio-group,
-  #lastik-guncelle-modal .radio-group {
+  #lastik-guncelle-modal .radio-group,
+  #utts-guncelle-modal .radio-group,
+  #takip-cihaz-guncelle-modal .radio-group {
     justify-content: flex-start !important; /* Sola yaslÄ± */
   }
   
