@@ -424,9 +424,10 @@
       activeVehicles.forEach(v => {
         const vid = String(v.id);
         const plaka = v.plate || v.plaka || '';
-        const marka = v.brand || v.marka || '';
-        const model = v.model || '';
-        const label = plaka + (marka || model ? ' – ' + (marka || '') + ' ' + (model || '') : '');
+        const marka = (v.brand || v.marka || '').trim();
+        const model = (v.model || '').trim();
+        const markaModel = [marka, model].filter(Boolean).join(' ');
+        const label = plaka + (markaModel ? ' (' + markaModel + ')' : '');
         const labelEl = document.createElement('label');
         labelEl.style.display = 'block';
         labelEl.style.padding = '6px 8px';

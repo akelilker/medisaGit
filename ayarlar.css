@@ -1358,6 +1358,12 @@ input.settings-form-input:-moz-autofill,
 @media (min-width: 641px) {
     .settings-dropdown button { text-align: center; }
 
+    /* Şube/Kullanıcı modalları: içerik (label + input) 350px; container = 350 + 20*2 = 390px */
+    #branch-form-modal .modal-container,
+    #user-form-modal .modal-container {
+        max-width: 390px;
+    }
+
     /* Kayıt modalları (Şube/Kullanıcı) – Taşıt modalı ile birebir aynı: header, body, form, butonlar */
     #branch-form-modal .modal-header,
     #user-form-modal .modal-header {
