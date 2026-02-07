@@ -19,6 +19,7 @@
     height: 100vh !important;
     overflow: hidden !important;
     touch-action: pan-y !important;
+    box-sizing: border-box !important; /* padding dahil yükseklik - iOS PWA uyumu */
 }
 
 .tasitlar-modal-overlay.active,
@@ -2228,6 +2229,7 @@
   /* Mobil: overlay yüksekliği top-bottom ile (footer ile 8px boşluk style-core'da) */
   .tasitlar-modal-overlay {
     height: auto !important;
+    bottom: calc(var(--modal-gap-above-footer) + var(--app-footer-height) + env(safe-area-inset-bottom, 0)) !important;
     max-height: calc(100vh - var(--modal-gap-above-footer) - var(--app-footer-height) - env(safe-area-inset-bottom, 0)) !important;
   }
   /* Ortak mobil container + iOS PWA: style-core.css (.modal-overlay .modal-container) */

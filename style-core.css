@@ -90,6 +90,8 @@ html { overflow-x: hidden; }
     content: '';
     position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
     bottom: 0;
     /* İçe vuran kırmızı ışık */
     box-shadow: inset 0 0 25px var(--red-glow-subtle);
@@ -927,6 +929,7 @@ body.modal-open .user-panel-link {
         justify-content: center !important;
         overflow: hidden !important;
         overscroll-behavior: none !important;
+        box-sizing: border-box !important; /* padding dahil yükseklik hesabı - iOS PWA */
         bottom: calc(var(--modal-gap-above-footer) + var(--app-footer-height) + env(safe-area-inset-bottom, 0)) !important;
         height: auto !important; /* 100vh base kurallarını ezer, overlay top-bottom arası olur */
         max-height: calc(100vh - var(--modal-gap-above-footer) - var(--app-footer-height) - env(safe-area-inset-bottom, 0)) !important;
@@ -984,15 +987,18 @@ body.modal-open .user-panel-link {
     @media (display-mode: standalone) {
         .modal-overlay {
             padding-top: env(safe-area-inset-top) !important;
-            max-height: calc(100vh - env(safe-area-inset-top) - var(--modal-gap-above-footer) - var(--app-footer-height) - env(safe-area-inset-bottom, 0)) !important;
+            box-sizing: border-box !important; /* padding dahil yükseklik hesabı */
+            max-height: calc(100vh - var(--modal-gap-above-footer) - var(--app-footer-height) - env(safe-area-inset-bottom, 0)) !important;
         }
         #vehicle-modal.modal-overlay,
         #reports-modal.modal-overlay {
-            max-height: calc(100vh - env(safe-area-inset-top) - var(--modal-gap-above-footer) - var(--app-footer-height) - env(safe-area-inset-bottom, 0)) !important;
+            max-height: calc(100vh - var(--modal-gap-above-footer) - var(--app-footer-height) - env(safe-area-inset-bottom, 0)) !important;
         }
         .tasitlar-modal-overlay {
             padding-top: env(safe-area-inset-top) !important;
-            max-height: calc(100vh - env(safe-area-inset-top) - var(--modal-gap-above-footer) - var(--app-footer-height) - env(safe-area-inset-bottom, 0)) !important;
+            box-sizing: border-box !important; /* padding dahil yükseklik hesabı */
+            bottom: calc(var(--modal-gap-above-footer) + var(--app-footer-height) + env(safe-area-inset-bottom, 0)) !important;
+            max-height: calc(100vh - var(--modal-gap-above-footer) - var(--app-footer-height) - env(safe-area-inset-bottom, 0)) !important;
         }
         .modal-overlay .modal-container {
             margin-top: 0 !important;
@@ -1024,9 +1030,10 @@ body.modal-open .user-panel-link {
     }
     
     /* MOBİLDE YAN ÇİZGİLER KIRMIZI - pseudo ile üstte (hero/menü üstüne çıkmasın) */
-    .content-wrap { 
+    .content-wrap {
         border-left: none;
         border-right: none;
+        box-shadow: none; /* Mobilde kırmızı glow kaldırıldı - üst/alt taşma sorunu çözümü */
     }
     .content-wrap::before {
         content: '';
@@ -1053,11 +1060,11 @@ body.modal-open .user-panel-link {
         box-shadow: inset 0 0 25px var(--red-glow-subtle);
     }
     
-    /* FOOTER IŞIKLARI GÜÇLÜ - GÜNCELLENDİ (0.35 OPAK) */
+    /* FOOTER IŞIKLARI - iOS PWA uyumlu (taşma önlendi) */
     #app-footer {
         position: fixed;
         bottom: 0;
-        box-shadow: 0 -9px 22px rgba(225, 6, 27, 0.35);  /* %35 Opaklık + Hafif yayılma */
+        box-shadow: 0 -8px 18px rgba(225, 6, 27, 0.20);  /* %20 Opaklık - kırmızı çizgi artefaktı önlendi */
         border-left: none; /* Mobilde yan yok */
         border-right: none;
         border-top: 1px solid rgba(128, 128, 128, 0.5) !important; /* Gri çizgi */
@@ -1100,27 +1107,30 @@ body.modal-open .user-panel-link {
     /* iOS PWA: anabaşlık kulaklık/sensör arkasında kalmasın - content-wrap üst padding */
     .content-wrap {
         padding-top: max(12px, env(safe-area-inset-top)) !important;
+        box-shadow: none !important; /* iOS PWA: kırmızı glow taşması önlendi */
     }
     /* Çerçeve ekranın en üstüne gider; içerik çentiğin altında kalır */
     .app-container {
         margin-top: calc(-1 * env(safe-area-inset-top)) !important;
         padding-top: env(safe-area-inset-top) !important;
-        border-radius: 38px !important;
+        border-radius: 38px 38px 0 0 !important; /* Sadece üst köşeler - alt footer ile kesişme sorunu çözüldü */
         overflow: hidden !important;
         border-top: 1.2px solid var(--border-red-tech) !important;
         border-left: 1px solid var(--border-red-tech) !important;
         border-right: 1px solid var(--border-red-tech) !important;
+        border-bottom: none !important; /* Footer üstünde kırmızı çizgi olmasın */
         box-shadow: 0 2px 14px rgba(225, 6, 27, 0.1) !important;
         min-height: calc(100vh - env(safe-area-inset-bottom)) !important;
         min-height: calc(100dvh - env(safe-area-inset-bottom)) !important;
     }
     /* Admin rapor sayfası: kavislere uyumlu çerçeve (anasayfa ile aynı) */
     .admin-app-container {
-        border-radius: 38px !important;
+        border-radius: 38px 38px 0 0 !important; /* Sadece üst köşeler */
         overflow: hidden !important;
         border-top: 1.2px solid var(--border-red-tech) !important;
         border-left: 1px solid var(--border-red-tech) !important;
         border-right: 1px solid var(--border-red-tech) !important;
+        border-bottom: none !important;
         box-shadow: 0 2px 14px rgba(225, 6, 27, 0.1) !important;
         min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom)) !important;
         min-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom)) !important;
