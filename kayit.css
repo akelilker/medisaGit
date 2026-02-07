@@ -607,11 +607,6 @@ textarea.form-input::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0
         height: auto !important;
         max-height: calc(100vh - var(--modal-gap-above-footer) - var(--app-footer-height) - env(safe-area-inset-bottom, 0)) !important;
     }
-    @media (display-mode: standalone) {
-        #vehicle-modal.modal-overlay {
-            max-height: calc(100vh - env(safe-area-inset-top) - var(--modal-gap-above-footer) - var(--app-footer-height) - env(safe-area-inset-bottom, 0)) !important;
-        }
-    }
     
     /* Kayıt modal mobil: overlay'ı doldur (alt boşluk kalkmasın), 10px köşe (çerçeve style-core'da) */
     #vehicle-modal .modal-container {
