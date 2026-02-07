@@ -91,6 +91,31 @@ function loadDataFromLocalStorage() {
 }
 
 /* =========================================
+   TAŞIT BİRLEŞTİRME (yerel + sunucu - olay/işaretleme kaybı önleme)
+   ========================================= */
+function mergeVehicleEvents(localEvents, serverEvents) {
+    const local = Array.isArray(localEvents) ? localEvents : [];
+    const server = Array.isArray(serverEvents) ? serverEvents : [];
+    const byId = new Map();
+    local.forEach(e => {
+        if (e && (e.id || e.timestamp)) byId.set(e.id || e.timestamp, e);
+    });
+    server.forEach(e => {
+        if (e && (e.id || e.timestamp)) {
+            const key = e.id || e.timestamp;
+            if (!byId.has(key)) byId.set(key, e);
+        }
+    });
+    const merged = Array.from(byId.values());
+    merged.sort((a, b) => {
+        const ta = (a.timestamp || a.date || '').toString();
+        const tb = (b.timestamp || b.date || '').toString();
+        return tb.localeCompare(ta);
+    });
+    return merged;
+}
+
+/* =========================================
    SUNUCUDAN VERİ YÜKLEME
    ========================================= */
 async function loadDataFromServer(forceRefresh = true) {
@@ -148,7 +173,42 @@ async function loadDataFromServer(forceRefresh = true) {
         } catch (parseError) {
             return loadDataFromLocalStorage();
         }
-        
+
+        // Yerel taşıtları oku ve sunucu taşıtları ile birleştir (olay/işaretleme kaybı önleme)
+        let localTasitlar = [];
+        try {
+            const raw = localStorage.getItem('medisa_vehicles_v1');
+            if (raw) localTasitlar = JSON.parse(raw);
+            if (!Array.isArray(localTasitlar)) localTasitlar = [];
+        } catch (e) {
+            localTasitlar = [];
+        }
+        const serverTasitlar = data.tasitlar || [];
+        const mergedTasitlar = serverTasitlar.map(sv => {
+            const local = localTasitlar.find(lv => String(lv.id) === String(sv.id));
+            if (!local) return sv;
+            const localEvents = local.events;
+            const serverEvents = sv.events;
+            const mergedEvents = mergeVehicleEvents(localEvents, serverEvents);
+            const localBoyaliParcalar = local.boyaliParcalar && typeof local.boyaliParcalar === 'object' && Object.keys(local.boyaliParcalar).length > 0
+                ? local.boyaliParcalar
+                : null;
+            const localBoyaVar = local.boya === 'var';
+            const localTahsisKisi = (local.tahsisKisi && String(local.tahsisKisi).trim()) || null;
+            const localAssignedUserId = local.assignedUserId !== undefined && local.assignedUserId !== null && local.assignedUserId !== ''
+                ? local.assignedUserId
+                : null;
+            return {
+                ...sv,
+                events: mergedEvents,
+                boyaliParcalar: localBoyaliParcalar || sv.boyaliParcalar || {},
+                boya: localBoyaVar ? 'var' : (sv.boya || local.boya),
+                tahsisKisi: localTahsisKisi || sv.tahsisKisi || local.tahsisKisi || '',
+                assignedUserId: localAssignedUserId !== null ? localAssignedUserId : (sv.assignedUserId !== undefined ? sv.assignedUserId : local.assignedUserId)
+            };
+        });
+        data.tasitlar = mergedTasitlar;
+
         // Global veri nesnesini güncelle (arac_aylik_hareketler, duzeltme_talepleri save sırasında silinmesin)
         window.appData = {
             tasitlar: data.tasitlar || [],
