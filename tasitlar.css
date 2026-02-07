@@ -364,10 +364,7 @@
     font-weight: 600 !important;
     letter-spacing: 0.05em !important; /* Masaüstü */
     color: #e0e0e0 !important;
-    /* Havada durma efekti */
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5),
-                 0 4px 12px rgba(0, 0, 0, 0.3),
-                 0 0 15px rgba(255, 255, 255, 0.08) !important;
+    text-shadow: none !important;
     opacity: 1 !important;
     margin: 0;
     text-transform: uppercase;
@@ -1661,10 +1658,7 @@
   .modal-overlay .modal-header h2 {
     font-size: 19px !important; /* 18px + 1 punto (sadece mobil) */
     color: #ffffff !important; /* Başlık tam beyaz */
-    /* Havada durma efekti - mobil */
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5),
-                 0 4px 12px rgba(0, 0, 0, 0.3),
-                 0 0 15px rgba(255, 255, 255, 0.08) !important;
+    text-shadow: none !important;
   }
 
   /* --- FÄ°LTRE DROPDOWN --- */

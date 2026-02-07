@@ -65,11 +65,8 @@
     font-size: 17px !important;
     font-weight: 600 !important;
     letter-spacing: 0.05em !important; /* Masaüstü */
-    color: #e0e0e0 !important; 
-    /* Havada durma efekti */
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5),
-                 0 4px 12px rgba(0, 0, 0, 0.3),
-                 0 0 15px rgba(255, 255, 255, 0.08) !important;
+    color: #e0e0e0 !important;
+    text-shadow: none !important;
     opacity: 1 !important;
     margin: 0;
 }
@@ -1395,7 +1392,7 @@
     color: #ffffff !important;
     font-size: 22px !important;
     letter-spacing: 0.2em !important;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 255, 255, 0.08) !important;
+    text-shadow: none !important;
   }
   #reports-modal .modal-close { font-size: 21px; }
   #reports-modal .modal-container {

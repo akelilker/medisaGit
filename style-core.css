@@ -174,7 +174,7 @@ html { overflow-x: hidden; }
 .hero-logo {
   flex: 0 0 var(--hero-logo-width);
   width: var(--hero-logo-width);
-  margin-left: -3px;  /* Sola kaydır */
+  margin-left: -5px;  /* Sola kaydır */
   transform: translateY(-1px);  /* Logo 1px yukarı (masaüstü) */
   opacity: 1 !important;
   filter: none !important;
@@ -188,7 +188,7 @@ html { overflow-x: hidden; }
   height: auto;
   display: block;
   opacity: 1 !important; /* Tam opak, zorla */
-  filter: none !important;
+  filter: brightness(0.88) !important; /* Koyu temada kırmızı biraz koyu, parlama azalsın */
   object-fit: contain; /* Logo oranlarını koru */
 }
 
@@ -268,7 +268,7 @@ html { overflow-x: hidden; }
 }
 .icon-btn:hover {
   color: #fff;
-  filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
+  filter: none;
 }
 
 /* Bildirim simgesi renkleri */
@@ -526,6 +526,10 @@ html { overflow-x: hidden; }
   /* Footer MEDISA - Masaüstünde hafif soldur (0.7 -> 0.5) */
   #app-footer.dimmed.delayed .brand img {
     opacity: 0.5 !important;
+  }
+  /* Menü buton metinleri masaüstünde tertemiz (sis yok) */
+  .menu-btn .ttl {
+    text-shadow: none !important;
   }
 }
 
@@ -786,7 +790,7 @@ body.modal-open .user-panel-link {
     height: 12.5px; /* Masaüstü 12.5px */
     width: auto;
     opacity: 0.4; /* Başlangıç çok soluk */
-    filter: drop-shadow(0 0 6px rgba(225, 6, 27, 0.4)); /* Kırmızı glow */
+    filter: none;
     transition: opacity 1s ease;
     /* Harfler arası boşluk efekti için resmi yayvanlaştır */
     transform: scaleX(1.1); /* Eski haline döndü (1.3 -> 1.1) */
