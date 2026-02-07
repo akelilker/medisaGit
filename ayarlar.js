@@ -69,6 +69,12 @@
       modal.classList.remove('active');
       setTimeout(() => modal.style.display = 'none', 300);
     };
+
+    window.goBackToAyarlar = function goBackToAyarlar(closeFn) {
+      if (typeof closeFn === 'function') closeFn();
+      const menu = document.getElementById('settings-menu');
+      if (menu) menu.classList.add('open');
+    };
   
     // — Modal Kontrolü (Form) —
     window.openBranchFormModal = function openBranchFormModal(editId = null) {
