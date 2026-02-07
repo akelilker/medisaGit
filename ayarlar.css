@@ -1170,21 +1170,21 @@ input.settings-form-input:-moz-autofill,
         color: rgba(255, 255, 255, 0.75) !important; /* Görev metni daha görünür */
     }
     
-    .settings-form-buttons button,
-    .settings-btn-save,
-    .settings-btn-cancel,
-    .settings-btn-delete {
-        border-color: rgba(255, 255, 255, 0.4) !important; /* Buton border daha görünür */
-        color: rgba(255, 255, 255, 0.9) !important; /* Buton metni daha parlak */
-    }
-    
+    /* Kaydet butonu - YEŞİL çerçeve + YEŞİL metin */
     .settings-btn-save {
-        border-color: #4ade80 !important; /* Kaydet butonu daha belirgin */
-        color: #4ade80 !important;
+        border-color: #28a745 !important;
+        color: #28a745 !important;
     }
     
+    /* Vazgeç butonu - KIRMIZI çerçeve + KIRMIZI metin */
+    .settings-btn-cancel {
+        border-color: #e1061b !important;
+        color: #e1061b !important;
+    }
+    
+    /* Sil butonu - KIRMIZI çerçeve + KIRMIZI metin */
     .settings-btn-delete {
-        border-color: #e1061b !important; /* Sil butonu daha belirgin */
+        border-color: #e1061b !important;
         color: #e1061b !important;
     }
     
