@@ -1811,95 +1811,9 @@
           });
         });
       } else if (type === 'utts') {
-        // UTTS modal'ında radio button handler'larını ekle ve mevcut değeri yükle
-        const setupUTTSButtons = () => {
-          const radioBtns = modal.querySelectorAll('.radio-btn');
-          if (radioBtns.length === 0) {
-            // Butonlar henüz DOM'da değilse tekrar dene
-            setTimeout(setupUTTSButtons, 50);
-            return;
-          }
-          
-          const vehicle = readVehicles().find(v => v.id === (vehicleId || window.currentDetailVehicleId));
-          
-          // Mevcut değeri yükle
-          radioBtns.forEach(b => b.classList.remove('active'));
-          if (vehicle) {
-            const durum = vehicle.uttsTanimlandi ? 'evet' : 'hayir';
-            const btn = Array.from(radioBtns).find(btn => btn.dataset.value === durum);
-            if (btn) btn.classList.add('active');
-          } else {
-            // Varsayılan olarak "Hayır" seçili
-            const hayirBtn = Array.from(radioBtns).find(btn => btn.dataset.value === 'hayir');
-            if (hayirBtn) hayirBtn.classList.add('active');
-          }
-          
-          // Event delegation kullan - modal-body üzerinde listener ekle
-          const modalBody = modal.querySelector('.modal-body');
-          if (modalBody && !modalBody.dataset.uttsHandler) {
-            modalBody.dataset.uttsHandler = '1';
-            modalBody.addEventListener('click', function(e) {
-              const clickedBtn = e.target.closest('.radio-btn');
-              if (clickedBtn && clickedBtn.closest('#utts-guncelle-modal')) {
-                e.preventDefault();
-                e.stopPropagation();
-                const allBtns = modal.querySelectorAll('.radio-btn');
-                allBtns.forEach(b => b.classList.remove('active'));
-                clickedBtn.classList.add('active');
-              }
-            });
-          }
-        };
-        
-        // Modal açıldıktan sonra setup'ı çalıştır
-        requestAnimationFrame(() => {
-          setTimeout(setupUTTSButtons, 0);
-        });
+        // UTTS modal'ında radio button handler'ları modal açıldıktan sonra ekleniyor (aşağıda)
       } else if (type === 'takip') {
-        // Takip Cihaz modal'ında radio button handler'larını ekle ve mevcut değeri yükle
-        const setupTakipButtons = () => {
-          const radioBtns = modal.querySelectorAll('.radio-btn');
-          if (radioBtns.length === 0) {
-            // Butonlar henüz DOM'da değilse tekrar dene
-            setTimeout(setupTakipButtons, 50);
-            return;
-          }
-          
-          const vehicle = readVehicles().find(v => v.id === (vehicleId || window.currentDetailVehicleId));
-          
-          // Mevcut değeri yükle
-          radioBtns.forEach(b => b.classList.remove('active'));
-          if (vehicle) {
-            const durum = vehicle.takipCihaziMontaj ? 'evet' : 'hayir';
-            const btn = Array.from(radioBtns).find(btn => btn.dataset.value === durum);
-            if (btn) btn.classList.add('active');
-          } else {
-            // Varsayılan olarak "Hayır" seçili
-            const hayirBtn = Array.from(radioBtns).find(btn => btn.dataset.value === 'hayir');
-            if (hayirBtn) hayirBtn.classList.add('active');
-          }
-          
-          // Event delegation kullan - modal-body üzerinde listener ekle
-          const modalBody = modal.querySelector('.modal-body');
-          if (modalBody && !modalBody.dataset.takipHandler) {
-            modalBody.dataset.takipHandler = '1';
-            modalBody.addEventListener('click', function(e) {
-              const clickedBtn = e.target.closest('.radio-btn');
-              if (clickedBtn && clickedBtn.closest('#takip-cihaz-guncelle-modal')) {
-                e.preventDefault();
-                e.stopPropagation();
-                const allBtns = modal.querySelectorAll('.radio-btn');
-                allBtns.forEach(b => b.classList.remove('active'));
-                clickedBtn.classList.add('active');
-              }
-            });
-          }
-        };
-        
-        // Modal açıldıktan sonra setup'ı çalıştır
-        requestAnimationFrame(() => {
-          setTimeout(setupTakipButtons, 0);
-        });
+        // Takip Cihaz modal'ında radio button handler'ları modal açıldıktan sonra ekleniyor (aşağıda)
       } else if (type === 'bakim') {
         // Bakım modal'ında varsayılan kişi
         const bakimKisiInput = document.getElementById('bakim-kisi');
@@ -1925,6 +1839,54 @@
         // Modal'ı hemen aç
         modal.style.display = 'flex';
         modal.classList.add('active');
+        
+        // UTTS ve Takip modalları için event listener'ları modal açıldıktan sonra ekle
+        if (type === 'utts' || type === 'takip') {
+          requestAnimationFrame(() => {
+            const radioBtns = modal.querySelectorAll('.radio-btn');
+            if (radioBtns.length > 0) {
+              // Mevcut listener'ları kaldır ve yeniden ekle
+              radioBtns.forEach(btn => {
+                const newBtn = btn.cloneNode(true);
+                btn.parentNode.replaceChild(newBtn, btn);
+              });
+              
+              const freshRadioBtns = modal.querySelectorAll('.radio-btn');
+              const vehicle = readVehicles().find(v => v.id === (vehicleId || window.currentDetailVehicleId));
+              
+              // Mevcut değeri yükle
+              if (type === 'utts') {
+                if (vehicle) {
+                  const durum = vehicle.uttsTanimlandi ? 'evet' : 'hayir';
+                  const btn = Array.from(freshRadioBtns).find(btn => btn.dataset.value === durum);
+                  if (btn) btn.classList.add('active');
+                } else {
+                  const hayirBtn = Array.from(freshRadioBtns).find(btn => btn.dataset.value === 'hayir');
+                  if (hayirBtn) hayirBtn.classList.add('active');
+                }
+              } else if (type === 'takip') {
+                if (vehicle) {
+                  const durum = vehicle.takipCihaziMontaj ? 'evet' : 'hayir';
+                  const btn = Array.from(freshRadioBtns).find(btn => btn.dataset.value === durum);
+                  if (btn) btn.classList.add('active');
+                } else {
+                  const hayirBtn = Array.from(freshRadioBtns).find(btn => btn.dataset.value === 'hayir');
+                  if (hayirBtn) hayirBtn.classList.add('active');
+                }
+              }
+              
+              // Event listener'ları ekle
+              freshRadioBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  freshRadioBtns.forEach(b => b.classList.remove('active'));
+                  this.classList.add('active');
+                });
+              });
+            }
+          });
+        }
         
         // Event menu'yu kapat (modal açıldıktan sonra)
         closeEventMenuModal();
