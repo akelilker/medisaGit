@@ -30,13 +30,11 @@ const CACHE_FILES = [
   
   // Icons
   '/icon/favicon.svg',
-  '/icon/favicon-16x16.png',
-  '/icon/favicon-32x32.png',
-  '/icon/apple-touch-icon.png',
-  '/icon/icon-192x192.png',
-  '/icon/icon-512x512.png',
-  '/icon/icon-192-maskable.png',
-  '/icon/icon-512-maskable.png',
+  '/icon/apple-touch-icon.svg',
+  '/icon/icon-192.svg',
+  '/icon/icon-512.svg',
+  '/icon/icon-192-maskable.svg',
+  '/icon/icon-512-maskable.svg',
   '/icon/logo-header2.svg',
   '/icon/logo-footer.svg',
   '/icon/marker.png',
@@ -176,8 +174,8 @@ self.addEventListener('push', (event) => {
   const defaultUrl = base ? base + '/' : '/';
   const options = {
     body: data.body || 'Yeni bildirim',
-    icon: base + '/icon/icon-192x192.png',
-    badge: base + '/icon/icon-192x192.png',
+    icon: base + '/icon/icon-192.svg',
+    badge: base + '/icon/icon-192.svg',
     data: data.url || defaultUrl
   };
   
