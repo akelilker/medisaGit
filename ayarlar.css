@@ -1226,7 +1226,9 @@ input.settings-form-input:-moz-autofill,
     #branch-modal.modal-overlay,
     #user-modal.modal-overlay,
     #data-management-modal.modal-overlay {
-        padding: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 0 !important;
         align-items: stretch;
         justify-content: center;
         overflow: hidden !important;
@@ -1240,7 +1242,9 @@ input.settings-form-input:-moz-autofill,
 
     #branch-form-modal.modal-overlay,
     #user-form-modal.modal-overlay {
-        padding: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 0 !important;
         align-items: stretch;
         justify-content: center;
         overflow: hidden !important;
