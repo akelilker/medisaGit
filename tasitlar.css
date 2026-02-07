@@ -18,7 +18,7 @@
     padding-left: 0 !important;
     padding-right: 0 !important;
     padding-bottom: 0 !important;
-    height: 100vh !important;
+    height: 100vh;
     overflow: hidden !important;
     touch-action: pan-y !important;
 }

@@ -21,7 +21,7 @@ body::-webkit-scrollbar,
   --border-shiny: rgba(255, 255, 255, 0.25);
 
   --modal-footer-gap: 12px;
-  --app-footer-height: 44px; /* footer-content yaklaşık yüksekliği */
+  --app-footer-height: 48px; /* footer-content yaklaşık yüksekliği */
   --modal-footer-reserve: calc(var(--app-footer-height) + var(--modal-footer-gap));
 
   /* --- MODAL ORTAK (tek yerden yönetim) --- */
@@ -746,7 +746,7 @@ body.modal-open .user-panel-link {
     margin: 0 auto;
     
     /* 👇 DİKEY YÜKSEKLİĞİ BURADAN KISABİLİRSİN 👇 */
-    padding: 8px 12px; 
+    padding: 12px 12px; 
     /* Örneğin bunu 'padding: 8px 16px;' yaparsan footer incelir. */
 
     padding-bottom: max(12px, env(safe-area-inset-bottom));
@@ -984,19 +984,22 @@ body.modal-open .user-panel-link {
         overscroll-behavior-x: none !important;
     }
 
-    /* iOS PWA: çentik altında kalması için overlay üst padding; container overlay'ı doldurur */
+    /* iOS PWA: çentik altında kalması için overlay üst padding; footer safe-area'yı zaten içeriyor, çift sayım yok */
     @media (display-mode: standalone) {
         .modal-overlay {
             padding-top: env(safe-area-inset-top) !important;
-            max-height: calc(100vh - env(safe-area-inset-top) - var(--modal-gap-above-footer) - var(--app-footer-height) - env(safe-area-inset-bottom, 0)) !important;
+            bottom: calc(var(--modal-gap-above-footer) + var(--app-footer-height)) !important;
+            max-height: calc(100vh - env(safe-area-inset-top) - var(--modal-gap-above-footer) - var(--app-footer-height)) !important;
         }
         #vehicle-modal.modal-overlay,
         #reports-modal.modal-overlay {
-            max-height: calc(100vh - env(safe-area-inset-top) - var(--modal-gap-above-footer) - var(--app-footer-height) - env(safe-area-inset-bottom, 0)) !important;
+            bottom: calc(var(--modal-gap-above-footer) + var(--app-footer-height)) !important;
+            max-height: calc(100vh - env(safe-area-inset-top) - var(--modal-gap-above-footer) - var(--app-footer-height)) !important;
         }
         .tasitlar-modal-overlay {
             padding-top: env(safe-area-inset-top) !important;
-            max-height: calc(100vh - env(safe-area-inset-top) - var(--modal-gap-above-footer) - var(--app-footer-height) - env(safe-area-inset-bottom, 0)) !important;
+            bottom: calc(var(--modal-gap-above-footer) + var(--app-footer-height)) !important;
+            max-height: calc(100vh - env(safe-area-inset-top) - var(--modal-gap-above-footer) - var(--app-footer-height)) !important;
         }
         .tasitlar-modal-overlay::before {
             top: 0 !important;
