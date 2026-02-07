@@ -15,7 +15,9 @@
     justify-content: flex-start !important;
     align-items: center !important;
     pointer-events: none !important;
-    padding: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
     height: 100vh !important;
     overflow: hidden !important;
     touch-action: pan-y !important;
