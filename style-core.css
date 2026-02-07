@@ -984,22 +984,22 @@ body.modal-open .user-panel-link {
         overscroll-behavior-x: none !important;
     }
 
-    /* iOS PWA: çentik altında kalması için overlay üst padding; footer safe-area'yı zaten içeriyor, çift sayım yok */
+    /* iOS PWA: modal footer üstünde ~10px boşlukla biter */
     @media (display-mode: standalone) {
         .modal-overlay {
             padding-top: env(safe-area-inset-top) !important;
-            bottom: calc(var(--modal-gap-above-footer) + var(--app-footer-height)) !important;
-            max-height: calc(100vh - env(safe-area-inset-top) - var(--modal-gap-above-footer) - var(--app-footer-height)) !important;
+            bottom: 10px !important;
+            max-height: none !important;
         }
         #vehicle-modal.modal-overlay,
         #reports-modal.modal-overlay {
-            bottom: calc(var(--modal-gap-above-footer) + var(--app-footer-height)) !important;
-            max-height: calc(100vh - env(safe-area-inset-top) - var(--modal-gap-above-footer) - var(--app-footer-height)) !important;
+            bottom: 10px !important;
+            max-height: none !important;
         }
         .tasitlar-modal-overlay {
             padding-top: env(safe-area-inset-top) !important;
-            bottom: calc(var(--modal-gap-above-footer) + var(--app-footer-height)) !important;
-            max-height: calc(100vh - env(safe-area-inset-top) - var(--modal-gap-above-footer) - var(--app-footer-height)) !important;
+            bottom: 10px !important;
+            max-height: none !important;
         }
         .tasitlar-modal-overlay::before {
             top: 0 !important;
@@ -1010,6 +1010,10 @@ body.modal-open .user-panel-link {
             margin-bottom: 0 !important;
             height: 100% !important;
             max-height: 100% !important;
+        }
+        /* Modal içeriği footer arkasında kalmasın */
+        .modal-overlay .modal-body {
+            padding-bottom: calc(var(--app-footer-height) + env(safe-area-inset-bottom, 0)) !important;
         }
     }
     
