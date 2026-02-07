@@ -898,8 +898,9 @@ body.modal-open .user-panel-link {
         filter: none !important;
     }
     
-    /* Hero mobilde havada + kırmızı (anasayfa ile eşit) */
+    /* Hero mobilde havada + kırmızı (anasayfa ile eşit), dikey yükseklik +5px */
     .hero {
+        min-height: 65px !important;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 4px 24px rgba(225, 6, 27, 0.18);
     }
     
@@ -1032,10 +1033,15 @@ body.modal-open .user-panel-link {
         min-height: 44px !important;
     }
     
-    /* Ana sayfa butonları mobilde: yükseklik + havada kırmızı gölge */
+    /* Ana sayfa butonları mobilde: yükseklik +4px (60px), havada kırmızı gölge */
     .menu-btn {
-        height: 56px !important; /* 54px → 56px (2px artırma) */
+        height: 60px !important; /* 56px + 4px */
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), 0 4px 20px rgba(225, 6, 27, 0.14);
+    }
+    
+    /* Menü butonları arası dikey boşluk +2px */
+    .menu-container {
+        gap: 6px !important; /* 4px + 2px */
     }
     
     /* MOBİLDE YAN ÇİZGİLER KIRMIZI - pseudo ile üstte (hero/menü üstüne çıkmasın) */

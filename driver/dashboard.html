@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Dashboard - Medisa Kullanıcı</title>
     <link rel="icon" type="image/svg+xml" href="/medisa/icon/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/medisa/icon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/medisa/icon/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="/medisa/icon/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/medisa/icon/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="/medisa/icon/icon-192x192.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="/medisa/icon/icon-512x512.png">
+    <link rel="apple-touch-icon" href="/medisa/icon/apple-touch-icon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/medisa/icon/apple-touch-icon.svg">
+    <link rel="apple-touch-icon" sizes="192x192" href="/medisa/icon/icon-192.svg">
+    <link rel="apple-touch-icon" sizes="512x512" href="/medisa/icon/icon-512.svg">
     <link rel="manifest" href="/medisa/manifest.json">
     <meta name="theme-color" content="#080d16">
     <meta name="msapplication-TileColor" content="#080d16">
@@ -114,8 +112,8 @@
             <div class="modal-body">
                 <div class="history-filters">
                     <div class="history-vehicle-dropdown-wrap">
-                        <label class="history-filter-label">Taşıt Seç:</label>
-                        <div class="history-vehicle-trigger" onclick="toggleHistoryVehicleDropdown(event)" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
+                        <label class="history-filter-label" for="history-vehicle-trigger">Taşıt Seç:</label>
+                        <div id="history-vehicle-trigger" class="history-vehicle-trigger" onclick="toggleHistoryVehicleDropdown(event)" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
                             <span class="history-vehicle-trigger-text">Tüm Taşıtlar</span>
                             <span class="history-vehicle-chevron">▾</span>
                         </div>
@@ -144,25 +142,25 @@
                     Mevcut KM: <strong id="current-km">0</strong>
                 </p>
                 <div class="form-group">
-                    <label>Yeni KM Değeri</label>
+                    <label for="new-km">Yeni KM Değeri</label>
                     <input type="number" id="new-km" placeholder="Örn: 54230">
                 </div>
                 <p class="driver-current-km">
                     Mevcut Bakım: <strong id="current-bakim">-</strong>
                 </p>
                 <div class="form-group">
-                    <label>Yeni Bakım Açıklama</label>
+                    <label for="new-bakim">Yeni Bakım Açıklama</label>
                     <textarea id="new-bakim" rows="2" placeholder="Boş bırakırsanız 'Yok' sayılır"></textarea>
                 </div>
                 <p class="driver-current-km">
                     Mevcut Kaza: <strong id="current-kaza">-</strong>
                 </p>
                 <div class="form-group">
-                    <label>Yeni Kaza Açıklama</label>
+                    <label for="new-kaza">Yeni Kaza Açıklama</label>
                     <textarea id="new-kaza" rows="2" placeholder="Boş bırakırsanız 'Yok' sayılır"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Düzeltme Sebebi</label>
+                    <label for="edit-reason">Düzeltme Sebebi</label>
                     <textarea id="edit-reason" placeholder="Neden düzeltmek istiyorsunuz?" rows="4" required></textarea>
                 </div>
                 <button type="button" onclick="submitEditRequest()" class="btn-submit">Talep Gönder</button>

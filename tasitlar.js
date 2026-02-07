@@ -1811,9 +1811,31 @@
           });
         });
       } else if (type === 'utts') {
-        // UTTS modal'ında radio button handler'ları modal açıldıktan sonra ekleniyor (aşağıda)
+        // UTTS modal'ında mevcut değeri yükle (click handler HTML onclick ile)
+        const radioBtns = modal.querySelectorAll('.radio-btn');
+        const vehicle = readVehicles().find(v => v.id === (vehicleId || window.currentDetailVehicleId));
+        radioBtns.forEach(b => b.classList.remove('active'));
+        if (vehicle) {
+          const durum = vehicle.uttsTanimlandi ? 'evet' : 'hayir';
+          const btn = Array.from(radioBtns).find(btn => btn.dataset.value === durum);
+          if (btn) btn.classList.add('active');
+        } else {
+          const hayirBtn = Array.from(radioBtns).find(btn => btn.dataset.value === 'hayir');
+          if (hayirBtn) hayirBtn.classList.add('active');
+        }
       } else if (type === 'takip') {
-        // Takip Cihaz modal'ında radio button handler'ları modal açıldıktan sonra ekleniyor (aşağıda)
+        // Takip Cihaz modal'ında mevcut değeri yükle (click handler HTML onclick ile)
+        const radioBtns = modal.querySelectorAll('.radio-btn');
+        const vehicle = readVehicles().find(v => v.id === (vehicleId || window.currentDetailVehicleId));
+        radioBtns.forEach(b => b.classList.remove('active'));
+        if (vehicle) {
+          const durum = vehicle.takipCihaziMontaj ? 'evet' : 'hayir';
+          const btn = Array.from(radioBtns).find(btn => btn.dataset.value === durum);
+          if (btn) btn.classList.add('active');
+        } else {
+          const hayirBtn = Array.from(radioBtns).find(btn => btn.dataset.value === 'hayir');
+          if (hayirBtn) hayirBtn.classList.add('active');
+        }
       } else if (type === 'bakim') {
         // Bakım modal'ında varsayılan kişi
         const bakimKisiInput = document.getElementById('bakim-kisi');

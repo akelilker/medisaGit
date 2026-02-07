@@ -13,13 +13,12 @@
   "lang": "tr",
   "dir": "ltr",
   "icons": [
-    { "src": "./icon/favicon-16x16.png", "sizes": "16x16", "type": "image/png", "purpose": "any" },
-    { "src": "./icon/favicon-32x32.png", "sizes": "32x32", "type": "image/png", "purpose": "any" },
-    { "src": "./icon/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
-    { "src": "./icon/icon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "./icon/icon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "./icon/icon-192-maskable.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
-    { "src": "./icon/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "./icon/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "./icon/apple-touch-icon.svg", "sizes": "180x180", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "./icon/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "./icon/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "./icon/icon-192-maskable.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "maskable" },
+    { "src": "./icon/icon-512-maskable.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "maskable" }
   ],
   "shortcuts": [
     { "name": "Taşıt Listesi", "short_name": "Taşıtlar", "description": "Tüm taşıtları görüntüle", "url": "./?view=vehicles", "icons": [{ "src": "./icon/otomobil.svg", "sizes": "any", "type": "image/svg+xml" }] },

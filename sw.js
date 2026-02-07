@@ -1,7 +1,7 @@
 // Service Worker - Medisa Taşıt Yönetim Sistemi
 // Version 1.0
 
-const CACHE_VERSION = 'medisa-v1.0';
+const CACHE_VERSION = 'medisa-v1.1';
 
 // Subpath desteği: /medisa/sw.js ise base = '/medisa', kök deploy'da base = ''
 function getBase() {
@@ -30,13 +30,11 @@ const CACHE_FILES = [
   
   // Icons
   '/icon/favicon.svg',
-  '/icon/favicon-16x16.png',
-  '/icon/favicon-32x32.png',
-  '/icon/apple-touch-icon.png',
-  '/icon/icon-192x192.png',
-  '/icon/icon-512x512.png',
-  '/icon/icon-192-maskable.png',
-  '/icon/icon-512-maskable.png',
+  '/icon/apple-touch-icon.svg',
+  '/icon/icon-192.svg',
+  '/icon/icon-512.svg',
+  '/icon/icon-192-maskable.svg',
+  '/icon/icon-512-maskable.svg',
   '/icon/logo-header2.svg',
   '/icon/logo-footer.svg',
   '/icon/marker.png',
@@ -72,20 +70,21 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Activate - Eski cache'leri temizle
+// Activate - Eski cache'leri temizle, sonra kontrolü al
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
       .then((cacheNames) => {
-        return Promise.all(
-          cacheNames.map((cacheName) => {
-            if (cacheName !== CACHE_VERSION) {
-              return caches.delete(cacheName);
-            }
-          })
-        );
+        const toDelete = cacheNames.filter((name) => name !== CACHE_VERSION);
+        return Promise.all(toDelete.map((name) => caches.delete(name)));
       })
-      .then(() => self.clients.claim())
+      .then(() => {
+        return self.clients.claim();
+      })
+      .catch((err) => {
+        // claim hatası olursa sessizce devam et
+        console.warn('SW activate:', err);
+      })
   );
 });
 
@@ -106,13 +105,13 @@ self.addEventListener('fetch', (event) => {
     return;
   }
   
-  // API çağrıları - network-first
+  // API çağrıları ve PHP - network-first (POST cache'lenemez, sadece GET)
   if (url.pathname.includes('/api/') || url.pathname.includes('.php')) {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          // Başarılı response'u cache'le
-          if (response && response.status === 200) {
+          // Sadece GET isteklerini cache'le (POST desteklenmez)
+          if (request.method === 'GET' && response && response.status === 200) {
             const responseClone = response.clone();
             caches.open(CACHE_VERSION).then((cache) => {
               cache.put(request, responseClone);
@@ -121,8 +120,11 @@ self.addEventListener('fetch', (event) => {
           return response;
         })
         .catch(() => {
-          // Network başarısızsa cache'den dön
-          return caches.match(request);
+          // Network başarısızsa ve GET ise cache'den dön
+          if (request.method === 'GET') {
+            return caches.match(request);
+          }
+          return new Response('Network error', { status: 503 });
         })
     );
     return;
@@ -176,8 +178,8 @@ self.addEventListener('push', (event) => {
   const defaultUrl = base ? base + '/' : '/';
   const options = {
     body: data.body || 'Yeni bildirim',
-    icon: base + '/icon/icon-192x192.png',
-    badge: base + '/icon/icon-192x192.png',
+    icon: base + '/icon/icon-192.svg',
+    badge: base + '/icon/icon-192.svg',
     data: data.url || defaultUrl
   };
   
