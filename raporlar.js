@@ -290,11 +290,11 @@
                     <div id="stok-detail-menu" class="stok-detail-menu ${stokDetailMenuOpen ? 'stok-detail-menu-open' : ''}"></div>
                     <div class="stok-date-range-controls">
                         <div class="stok-date-input-group">
-                            <label>Başlangıç T.</label>
+                            <label for="stok-date-start">Başlangıç T.</label>
                             <input type="date" id="stok-date-start" class="stok-date-input" placeholder="">
                         </div>
                         <div class="stok-date-input-group">
-                            <label>Bitiş T.</label>
+                            <label for="stok-date-end">Bitiş T.</label>
                             <input type="date" id="stok-date-end" class="stok-date-input stok-date-has-value" value="${todayInputValue}">
                         </div>
                     </div>

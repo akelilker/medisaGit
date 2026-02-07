@@ -260,11 +260,11 @@ function createVehicleCard(vehicle, records, currentPeriod) {
         </div>
         
         <div class="form-group driver-km-form">
-            <label>Güncel KM</label>
+<label for="km-${vehicle.id}">Güncel KM</label>
             <div class="driver-km-input-wrap">
                 <span class="driver-km-fake-placeholder" id="km-placeholder-${vehicle.id}">Örn: 45230</span>
-                <input type="text" 
-                       id="km-${vehicle.id}" 
+                <input type="text"
+                       id="km-${vehicle.id}"
                        class="driver-km-input"
                        inputmode="numeric"
                        pattern="[0-9]*"
@@ -285,27 +285,27 @@ function createVehicleCard(vehicle, records, currentPeriod) {
                 </button>
                 <div id="bakim-block-${vehicle.id}" class="driver-report-block driver-report-block-bakim ${bakimVar ? 'show' : ''}">
                     <div class="form-group">
-                        <label>Bakım Tarihi</label>
+                        <label for="bakim-tarih-${vehicle.id}">Bakım Tarihi</label>
                         <input type="date" id="bakim-tarih-${vehicle.id}" class="driver-bakim-input" value="${existingRecord && existingRecord.bakim_tarih ? existingRecord.bakim_tarih : new Date().toISOString().split('T')[0]}">
                     </div>
                     <div class="form-group">
-                        <label>Açıklama</label>
+                        <label for="bakim-detay-${vehicle.id}">Açıklama</label>
                         <textarea id="bakim-detay-${vehicle.id}" class="driver-report-textarea-auto driver-bakim-textarea" rows="1" placeholder="Bakım detayını yazın..." maxlength="500">${existingRecord ? (existingRecord.bakim_aciklama || '') : ''}</textarea>
                     </div>
                     <div class="form-group">
-                        <label>İşlemi Yapan Servis</label>
+                        <label for="bakim-servis-${vehicle.id}">İşlemi Yapan Servis</label>
                         <input type="text" id="bakim-servis-${vehicle.id}" class="driver-bakim-input" placeholder="Servis adı">
                     </div>
                     <div class="form-group">
-                        <label>Taşıtı Bakıma Götüren Kişi</label>
+                        <label for="bakim-kisi-${vehicle.id}">Taşıtı Bakıma Götüren Kişi</label>
                         <input type="text" id="bakim-kisi-${vehicle.id}" class="driver-bakim-input" placeholder="Kişi adı">
                     </div>
                     <div class="form-group">
-                        <label>Km</label>
+                        <label for="bakim-km-${vehicle.id}">Km</label>
                         <input type="text" id="bakim-km-${vehicle.id}" class="driver-bakim-input" placeholder="50.000" inputmode="numeric">
                     </div>
                     <div class="form-group">
-                        <label>Tutar (TL)</label>
+                        <label for="bakim-tutar-${vehicle.id}">Tutar (TL)</label>
                         <input type="text" id="bakim-tutar-${vehicle.id}" class="driver-bakim-input" placeholder="2.500" inputmode="numeric">
                     </div>
                 </div>
@@ -317,15 +317,15 @@ function createVehicleCard(vehicle, records, currentPeriod) {
                 </button>
                 <div id="kaza-block-${vehicle.id}" class="driver-report-block driver-report-block-kaza ${kazaVar ? 'show' : ''}">
                     <div class="form-group">
-                        <label>Kaza Tarihi</label>
+                        <label for="kaza-tarih-${vehicle.id}">Kaza Tarihi</label>
                         <input type="date" id="kaza-tarih-${vehicle.id}" class="driver-kaza-input" value="${existingRecord && existingRecord.kaza_tarih ? existingRecord.kaza_tarih : new Date().toISOString().split('T')[0]}">
                     </div>
                     <div class="form-group">
-                        <label>Açıklama</label>
+                        <label for="kaza-detay-${vehicle.id}">Açıklama</label>
                         <textarea id="kaza-detay-${vehicle.id}" class="driver-report-textarea-auto driver-kaza-textarea" rows="1" placeholder="Kaza açıklamasını yazın..." maxlength="500">${existingRecord ? (existingRecord.kaza_aciklama || '') : ''}</textarea>
                     </div>
                     <div class="form-group">
-                        <label>Hasar Tutarı (TL)</label>
+                        <label for="kaza-tutar-${vehicle.id}">Hasar Tutarı (TL)</label>
                         <input type="text" id="kaza-tutar-${vehicle.id}" class="driver-kaza-input" placeholder="5.000" inputmode="numeric">
                     </div>
                 </div>
@@ -333,7 +333,7 @@ function createVehicleCard(vehicle, records, currentPeriod) {
         </div>
         
         <div class="form-group driver-ekstra-not-form">
-            <label>Not</label>
+            <label for="not-${vehicle.id}">Not</label>
             <textarea id="not-${vehicle.id}" class="driver-ekstra-not" rows="1"
                       placeholder="Varsa Belirtin.."
                       maxlength="500">${existingRecord ? existingRecord.ekstra_not : ''}</textarea>

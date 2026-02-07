@@ -168,9 +168,9 @@
                     <div class="modal-columns">
                         <div class="modal-column-left">
                             <div class="form-section-inline" style="margin-bottom: 7px;">
-                                <label class="form-label">Taşıt Tipi</label>
+                                <label class="form-label" for="vehicle-type-otomobil">Taşıt Tipi</label>
                                 <div class="vehicle-type-group">
-                                    <button class="vehicle-type-btn" data-type="otomobil" title="Otomobil / SUV">
+                                    <button type="button" id="vehicle-type-otomobil" class="vehicle-type-btn" data-type="otomobil" title="Otomobil / SUV">
                                         <img src="icon/otomobil.svg" alt="Otomobil" />
                                     </button>
                                     <button class="vehicle-type-btn" data-type="minivan" title="Küçük Ticari">
@@ -183,43 +183,43 @@
                             </div>
 
                             <div class="form-section">
-                                <label class="form-label">Plaka</label>
+                                <label class="form-label" for="vehicle-plate">Plaka</label>
                                 <input type="text" id="vehicle-plate" class="form-input" placeholder="34 ABC 123" maxlength="15">
                             </div>
                             <div class="form-section">
-                                <label class="form-label">Üretim Yılı</label>
+                                <label class="form-label" for="vehicle-year">Üretim Yılı</label>
                                 <input type="number" id="vehicle-year" class="form-input" placeholder="2026" min="1950" max="2030" inputmode="numeric">
                             </div>
                             <div class="form-section">
-                                <label class="form-label">Marka / Model</label>
+                                <label class="form-label" for="vehicle-brand-model">Marka / Model</label>
                                 <input type="text" id="vehicle-brand-model" class="form-input" placeholder="Hyundai Elantra">
                             </div>
                             <div class="form-section">
-                                <label class="form-label">Km (Alındığı Tarih)</label>
+                                <label class="form-label" for="vehicle-km">Km (Alındığı Tarih)</label>
                                 <input type="text" id="vehicle-km" class="form-input" placeholder="50.000" inputmode="numeric" pattern="[0-9]*">
                             </div>
                             <div class="form-section-inline">
-                                <label class="form-label">Şanzıman Tipi</label>
+                                <label class="form-label" for="sanziman-manuel">Şanzıman Tipi</label>
                                 <div class="radio-group">
-                                    <button class="radio-btn" data-value="manuel">Manuel</button>
+                                    <button type="button" id="sanziman-manuel" class="radio-btn" data-value="manuel">Manuel</button>
                                     <button class="radio-btn" data-value="otomatik">Otomatik</button>
                                 </div>
                             </div>
                             <div class="form-section-inline">
-                                <label class="form-label">Tramer Kaydı</label>
+                                <label class="form-label" for="tramer-var">Tramer Kaydı</label>
                                 <div class="radio-group">
-                                    <button class="radio-btn" data-value="var">Var</button>
-                                    <button class="radio-btn" data-value="yok">Yok</button>
+                                    <button type="button" id="tramer-var" class="radio-btn" data-value="var">Var</button>
+                                    <button type="button" class="radio-btn" data-value="yok">Yok</button>
                                 </div>
                             </div>
                             <div class="form-section">
                                 <div id="tramer-records-container" style="display:none; margin-top:6px;"></div>
                             </div>
                             <div class="form-section-inline">
-                                <label class="form-label">Boya / Değişen</label>
+                                <label class="form-label" for="boya-var">Boya / Değişen</label>
                                 <div class="radio-group">
-                                    <button class="radio-btn" data-value="var">Var</button>
-                                    <button class="radio-btn" data-value="yok">Yok</button>
+                                    <button type="button" id="boya-var" class="radio-btn" data-value="var">Var</button>
+                                    <button type="button" class="radio-btn" data-value="yok">Yok</button>
                                 </div>
                             </div>
                             <div class="form-section">
@@ -229,49 +229,51 @@
 
                         <div class="modal-column-right">
                             <div class="form-section">
-                                <label class="form-label">Sigorta Bitiş Tarihi</label>
-                                <input type="date" class="form-input" inputmode="numeric">
+                                <label class="form-label" for="vehicle-sigorta-date">Sigorta Bitiş Tarihi</label>
+                                <input type="date" id="vehicle-sigorta-date" class="form-input" inputmode="numeric">
                             </div>
                             <div class="form-section">
-                                <label class="form-label">Kasko Bitiş Tarihi</label>
-                                <input type="date" class="form-input" inputmode="numeric">
+                                <label class="form-label" for="vehicle-kasko-date">Kasko Bitiş Tarihi</label>
+                                <input type="date" id="vehicle-kasko-date" class="form-input" inputmode="numeric">
                             </div>
                             <div class="form-section">
-                                <label class="form-label">Muayene Bitiş Tarihi</label>
-                                <input type="date" class="form-input" inputmode="numeric">
+                                <label class="form-label" for="vehicle-muayene-date">Muayene Bitiş Tarihi</label>
+                                <input type="date" id="vehicle-muayene-date" class="form-input" inputmode="numeric">
                             </div>
                             <div class="form-section-inline">
-                                <label class="form-label">Yedek Anahtar</label>
+                                <label class="form-label" for="yedek-anahtar-var">Yedek Anahtar</label>
                                 <div class="radio-group">
-                                    <button class="radio-btn" data-value="var">Var</button>
-                                    <button class="radio-btn" data-value="yok">Yok</button>
+                                    <button type="button" id="yedek-anahtar-var" class="radio-btn" data-value="var">Var</button>
+                                    <button type="button" class="radio-btn" data-value="yok">Yok</button>
                                 </div>
                             </div>
                             <div class="form-section">
+                                <label class="form-label" for="anahtar-nerede" style="display:none;">Anahtar nerede</label>
                                 <input type="text" class="form-input" placeholder="Nerede?" style="display:none;" id="anahtar-nerede">
                             </div>
                             <div class="form-section-inline">
-                                <label class="form-label">Kredi / Rehin Var mı?</label>
+                                <label class="form-label" for="kredi-var">Kredi / Rehin Var mı?</label>
                                 <div class="radio-group">
-                                    <button class="radio-btn" data-value="var" data-group="kredi">Var</button>
-                                    <button class="radio-btn" data-value="yok" data-group="kredi">Yok</button>
+                                    <button type="button" id="kredi-var" class="radio-btn" data-value="var" data-group="kredi">Var</button>
+                                    <button type="button" class="radio-btn" data-value="yok" data-group="kredi">Yok</button>
                                 </div>
                             </div>
                             <div class="form-section">
+                                <label class="form-label" for="kredi-detay" style="display:none;">Kredi detay</label>
                                 <textarea class="form-input" rows="2" placeholder="Detay Ekleyin" style="display:none;" id="kredi-detay"></textarea>
                             </div>
                             <div class="form-section">
-                                <label class="form-label">Tahsis Edilen Şube</label>
+                                <label class="form-label" for="vehicle-branch-select">Tahsis Edilen Şube</label>
                                 <select id="vehicle-branch-select" class="form-input">
                                     <option value="">Seçiniz</option>
                                 </select>
                             </div>
                             <div class="form-section">
-                                <label class="form-label">Taşıtın Alım Bedeli</label>
+                                <label class="form-label" for="vehicle-price">Taşıtın Alım Bedeli</label>
                                 <input type="text" id="vehicle-price" class="form-input" placeholder="150.000 TL" inputmode="numeric">
                             </div>
                             <div class="form-section">
-                                <label class="form-label">Notlar</label>
+                                <label class="form-label" for="vehicle-notes">Notlar</label>
                                 <textarea id="vehicle-notes" class="form-input notes-auto-expand" rows="1" placeholder="Ek bilgiler..."></textarea>
                             </div>
                         </div>
@@ -365,11 +367,11 @@
                     <form id="branch-form" style="padding: 16px;">
                         <input type="hidden" id="branch-id">
                         <div class="form-section">
-                            <label class="form-label">Şube Adı</label>
+                            <label class="form-label" for="branch-name">Şube Adı</label>
                             <input type="text" id="branch-name" class="form-input" placeholder="Şube adı" required>
                         </div>
                         <div class="form-section">
-                            <label class="form-label">Şehir</label>
+                            <label class="form-label" for="branch-city">Şehir</label>
                             <input type="text" id="branch-city" class="form-input" placeholder="Şehir">
                         </div>
                         <div class="settings-form-buttons">
@@ -429,25 +431,25 @@
                     <form id="user-form" class="user-form-inner">
                         <input type="hidden" id="user-id">
                         <div class="form-section">
-                            <label class="form-label">Ad Soyad</label>
+                            <label class="form-label" for="user-name">Ad Soyad</label>
                             <input type="text" id="user-name" class="form-input" placeholder="Ad Soyad" required>
                         </div>
                         <div class="form-section">
-                            <label class="form-label">Şube</label>
+                            <label class="form-label" for="user-branch">Şube</label>
                             <select id="user-branch" class="form-input" required>
                                 <option value="">Şube Seçin</option>
                             </select>
                         </div>
                         <div class="form-section">
-                            <label class="form-label">Telefon</label>
+                            <label class="form-label" for="user-phone">Telefon</label>
                             <input type="text" id="user-phone" class="form-input" placeholder="Telefon">
                         </div>
                         <div class="form-section">
-                            <label class="form-label">E-posta</label>
+                            <label class="form-label" for="user-email">E-posta</label>
                             <input type="email" id="user-email" class="form-input" placeholder="E-posta">
                         </div>
                         <div class="form-section">
-                            <label class="form-label">Görev Tanımı</label>
+                            <label class="form-label" for="user-role">Görev Tanımı</label>
                             <select id="user-role" class="form-input">
                                 <option value="admin">Yönetici</option>
                                 <option value="sales">Satış Temsilcisi</option>
@@ -455,15 +457,15 @@
                             </select>
                         </div>
                         <div class="form-section">
-                            <label class="form-label">Kullanıcı Adı (portal girişi)</label>
+                            <label class="form-label" for="user-username">Kullanıcı Adı (portal girişi)</label>
                             <input type="text" id="user-username" class="form-input" placeholder="Plaka veya kullanıcı adı" autocomplete="username">
                         </div>
                         <div class="form-section">
-                            <label class="form-label">Şifre (portal girişi)</label>
+                            <label class="form-label" for="user-password">Şifre (portal girişi)</label>
                             <input type="password" id="user-password" class="form-input" placeholder="Şifre" autocomplete="new-password">
                         </div>
                         <div class="form-section form-section-vehicles">
-                            <label class="form-label">Atanacak Taşıt</label>
+                            <label class="form-label" for="user-vehicles-trigger">Atanacak Taşıt</label>
                             <div class="user-vehicles-dropdown-wrap">
                                 <div id="user-vehicles-trigger" class="user-vehicles-trigger" tabindex="0" role="combobox" onclick="if(window.toggleUserVehiclesDropdown) window.toggleUserVehiclesDropdown()">Taşıt seçin</div>
                                 <div id="user-vehicles-dropdown" class="user-vehicles-dropdown" style="display:none;">
@@ -631,7 +633,7 @@
                 </div>
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="text-align: center; margin-bottom: 16px;">
-                        <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Tescil Tarihi:</label>
+                        <label for="tescil-tarih-input" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Tescil Tarihi:</label>
                         <div class="tescil-input-wrapper" style="position: relative; display: flex; align-items: center; justify-content: center;">
                             <input type="text" id="tescil-tarih-input" class="form-input" placeholder="gg/aa/yyyy" maxlength="10" inputmode="numeric" style="width: 140px; text-align: center;">
                             <span id="tescil-tarih-overlay" class="tescil-tarih-overlay" style="position: absolute; pointer-events: none; white-space: nowrap; font-size: 14px; font-family: inherit; line-height: 1; color: #e0e0e0;"></span>
@@ -687,27 +689,27 @@
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Tarih (gg.aa.yyyy):</label>
+                            <label for="bakim-tarih" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Tarih (gg.aa.yyyy):</label>
                             <input type="date" id="bakim-tarih" class="form-input" style="width: 20%;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Yapılan İşlemler:</label>
+                            <label for="bakim-islemler" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Yapılan İşlemler:</label>
                             <textarea id="bakim-islemler" class="form-input" rows="3" placeholder="Yapılan işlemleri yazın" style="width: 100%;"></textarea>
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">İşlemi Yapan Servis:</label>
+                            <label for="bakim-servis" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">İşlemi Yapan Servis:</label>
                             <input type="text" id="bakim-servis" class="form-input" placeholder="Servis adı" style="width: 100%;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Taşıtı Bakıma Götüren Kişi:</label>
+                            <label for="bakim-kisi" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Taşıtı Bakıma Götüren Kişi:</label>
                             <input type="text" id="bakim-kisi" class="form-input" placeholder="Kişi adı" style="width: 100%;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Km:</label>
+                            <label for="bakim-km" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Km:</label>
                             <input type="text" id="bakim-km" class="form-input" placeholder="50.000" inputmode="numeric" style="width: 100%;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Tutar (TL):</label>
+                            <label for="bakim-tutar" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Tutar (TL):</label>
                             <input type="text" id="bakim-tutar" class="form-input" placeholder="2.500" inputmode="numeric" style="width: 100%;">
                         </div>
                     </div>
@@ -742,19 +744,19 @@
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div style="display: flex; flex-direction: column; align-items: flex-start; margin-top: -40px;">
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px; text-align: left;">Tarih (gg.aa.yyyy):</label>
+                            <label for="kaza-tarih" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px; text-align: left;">Tarih (gg.aa.yyyy):</label>
                             <input type="date" id="kaza-tarih" class="form-input" style="width: 50%; max-width: 150px;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Kullanıcı:</label>
+                            <label for="kaza-surucu" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Kullanıcı:</label>
                             <input type="text" id="kaza-surucu" class="form-input" placeholder="Kullanıcı adı" style="width: 100%;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Hasar Tutarı (TL):</label>
+                            <label for="kaza-tutar" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Hasar Tutarı (TL):</label>
                             <input type="text" id="kaza-tutar" class="form-input" placeholder="5.000" inputmode="numeric" style="width: 100%;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Hasar Gören Parça (Kaporta Şeması):</label>
+                            <label for="kaza-kaporta-container" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Hasar Gören Parça (Kaporta Şeması):</label>
                             <div id="kaza-kaporta-container" style="margin-top: 3px; margin-bottom: 8px; overflow: hidden;"></div>
                         </div>
                     </div>
@@ -789,19 +791,19 @@
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Tarih (gg.aa.yyyy):</label>
+                            <label for="sigorta-tarih" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Tarih (gg.aa.yyyy):</label>
                             <input type="date" id="sigorta-tarih" class="form-input" style="width: 20%;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Sigorta Firması:</label>
+                            <label for="sigorta-firma" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Sigorta Firması:</label>
                             <input type="text" id="sigorta-firma" class="form-input" placeholder="Firma adı" style="width: 100%;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Yaptırılan Acente:</label>
+                            <label for="sigorta-acente" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Yaptırılan Acente:</label>
                             <input type="text" id="sigorta-acente" class="form-input" placeholder="Acente adı" style="width: 100%;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Acente İletişim No:</label>
+                            <label for="sigorta-iletisim" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Acente İletişim No:</label>
                             <input type="text" id="sigorta-iletisim" class="form-input" placeholder="Telefon numarası" style="width: 100%;">
                         </div>
                     </div>
@@ -836,19 +838,19 @@
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Tarih (gg.aa.yyyy):</label>
+                            <label for="kasko-tarih" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Tarih (gg.aa.yyyy):</label>
                             <input type="date" id="kasko-tarih" class="form-input" style="width: 20%;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Sigorta Firması:</label>
+                            <label for="kasko-firma" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Sigorta Firması:</label>
                             <input type="text" id="kasko-firma" class="form-input" placeholder="Firma adı" style="width: 100%;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Yaptırılan Acente:</label>
+                            <label for="kasko-acente" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Yaptırılan Acente:</label>
                             <input type="text" id="kasko-acente" class="form-input" placeholder="Acente adı" style="width: 100%;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Acente İletişim No:</label>
+                            <label for="kasko-iletisim" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Acente İletişim No:</label>
                             <input type="text" id="kasko-iletisim" class="form-input" placeholder="Telefon numarası" style="width: 100%;">
                         </div>
                     </div>
@@ -883,7 +885,7 @@
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Yaptırılan Tarih (gg.aa.yyyy):</label>
+                            <label for="muayene-tarih" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Yaptırılan Tarih (gg.aa.yyyy):</label>
                             <input type="date" id="muayene-tarih" class="form-input" style="width: 20%;">
                         </div>
                     </div>
@@ -918,14 +920,14 @@
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Durum:</label>
+                            <label for="anahtar-durum-var" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Durum:</label>
                             <div class="radio-group" style="display: flex; gap: 8px; justify-content: flex-start;">
-                                <button class="radio-btn" data-value="var" style="background: transparent; border: none; color: #28a745; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Var</button>
-                                <button class="radio-btn" data-value="yok" style="background: transparent; border: none; color: #e1061b; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Yok</button>
+                                <button type="button" id="anahtar-durum-var" class="radio-btn" data-value="var" style="background: transparent; border: none; color: #28a745; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Var</button>
+                                <button type="button" class="radio-btn" data-value="yok" style="background: transparent; border: none; color: #e1061b; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Yok</button>
                             </div>
                         </div>
                         <div id="anahtar-detay-wrapper" style="display: none;">
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Açıklama:</label>
+                            <label for="anahtar-detay-event" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Açıklama:</label>
                             <input type="text" id="anahtar-detay-event" class="form-input" placeholder="Anahtar nerede?" style="width: 100%;">
                         </div>
                     </div>
@@ -960,14 +962,14 @@
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Durum:</label>
+                            <label for="kredi-durum-var" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Durum:</label>
                             <div class="radio-group" style="display: flex; gap: 8px; justify-content: flex-start;">
-                                <button class="radio-btn" data-value="var" style="background: transparent; border: none; color: #e1061b; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Var</button>
-                                <button class="radio-btn" data-value="yok" style="background: transparent; border: none; color: #28a745; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Yok</button>
+                                <button type="button" id="kredi-durum-var" class="radio-btn" data-value="var" style="background: transparent; border: none; color: #e1061b; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Var</button>
+                                <button type="button" class="radio-btn" data-value="yok" style="background: transparent; border: none; color: #28a745; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Yok</button>
                             </div>
                         </div>
                         <div id="kredi-detay-wrapper-event" style="display: none;">
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Açıklama:</label>
+                            <label for="kredi-detay-event" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Açıklama:</label>
                             <input type="text" id="kredi-detay-event" class="form-input" placeholder="Kredi/Rehin detayı" style="width: 100%;">
                         </div>
                     </div>
@@ -1002,7 +1004,7 @@
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Güncel Km Bilgisi Girin:</label>
+                            <label for="km-guncelle-input" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Güncel Km Bilgisi Girin:</label>
                             <input type="text" id="km-guncelle-input" class="form-input" placeholder="150.000" inputmode="numeric" style="width: 100%;">
                         </div>
                     </div>
@@ -1037,14 +1039,14 @@
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Durum:</label>
+                            <label for="lastik-durum-var" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Durum:</label>
                             <div class="radio-group" style="display: flex; gap: 8px; justify-content: flex-start;">
-                                <button class="radio-btn" data-value="var" style="background: transparent; border: none; color: #28a745; padding: 0; cursor: pointer; font-weight: 600; font-size: 14px;">Var</button>
-                                <button class="radio-btn" data-value="yok" style="background: transparent; border: none; color: #e1061b; padding: 0; cursor: pointer; font-weight: 600; font-size: 14px;">Yok</button>
+                                <button type="button" id="lastik-durum-var" class="radio-btn" data-value="var" style="background: transparent; border: none; color: #28a745; padding: 0; cursor: pointer; font-weight: 600; font-size: 14px;">Var</button>
+                                <button type="button" class="radio-btn" data-value="yok" style="background: transparent; border: none; color: #e1061b; padding: 0; cursor: pointer; font-weight: 600; font-size: 14px;">Yok</button>
                             </div>
                         </div>
                         <div id="lastik-adres-wrapper-event" style="display: none;">
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Adres:</label>
+                            <label for="lastik-adres-event" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Adres:</label>
                             <input type="text" id="lastik-adres-event" class="form-input" placeholder="Lastik adresi" style="width: 100%;">
                         </div>
                     </div>
@@ -1079,9 +1081,9 @@
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">UTTS Tanımlandı mı:</label>
+                            <label for="utts-evet" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">UTTS Tanımlandı mı:</label>
                             <div class="radio-group" style="display: flex; gap: 8px; justify-content: flex-start;">
-                                <button class="radio-btn" data-value="evet" onclick="event.stopPropagation(); this.closest('.radio-group').querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active')); this.classList.add('active');" style="background: transparent; border: none; color: #28a745; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Evet</button>
+                                <button type="button" id="utts-evet" class="radio-btn" data-value="evet" onclick="event.stopPropagation(); this.closest('.radio-group').querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active')); this.classList.add('active');" style="background: transparent; border: none; color: #28a745; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Evet</button>
                                 <button class="radio-btn" data-value="hayir" onclick="event.stopPropagation(); this.closest('.radio-group').querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active')); this.classList.add('active');" style="background: transparent; border: none; color: #e1061b; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Hayır</button>
                             </div>
                         </div>
@@ -1117,9 +1119,9 @@
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Takip Cihazı Montajı:</label>
+                            <label for="takip-evet" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Takip Cihazı Montajı:</label>
                             <div class="radio-group" style="display: flex; gap: 8px; justify-content: flex-start;">
-                                <button class="radio-btn" data-value="evet" onclick="event.stopPropagation(); this.closest('.radio-group').querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active')); this.classList.add('active');" style="background: transparent; border: none; color: #28a745; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Evet</button>
+                                <button type="button" id="takip-evet" class="radio-btn" data-value="evet" onclick="event.stopPropagation(); this.closest('.radio-group').querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active')); this.classList.add('active');" style="background: transparent; border: none; color: #28a745; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Evet</button>
                                 <button class="radio-btn" data-value="hayir" onclick="event.stopPropagation(); this.closest('.radio-group').querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active')); this.classList.add('active');" style="background: transparent; border: none; color: #e1061b; padding: 0; cursor: pointer; font-weight: 600; font-size: 16px;">Hayır</button>
                             </div>
                         </div>
@@ -1155,7 +1157,7 @@
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Yeni Şube:</label>
+                            <label for="sube-select" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Yeni Şube:</label>
                             <select id="sube-select" class="form-input" style="width: 100%;">
                                 <option value="">Şube Seçiniz</option>
                             </select>
@@ -1192,7 +1194,7 @@
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Kullanıcı:</label>
+                            <label for="kullanici-select" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 3px;">Kullanıcı:</label>
                             <select id="kullanici-select" class="form-input" style="width: 100%;">
                                 <option value="">Kullanıcı Seçiniz</option>
                             </select>
@@ -1229,15 +1231,15 @@
                 <div class="modal-body" onclick="event.stopPropagation();">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Satış/Pert Tarihi (gg.aa.yyyy):</label>
+                            <label for="satis-tarih" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Satış/Pert Tarihi (gg.aa.yyyy):</label>
                             <input type="date" id="satis-tarih" class="form-input" style="width: 100%;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Satış Tutarı (Opsiyonel):</label>
+                            <label for="satis-tutar" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Satış Tutarı (Opsiyonel):</label>
                             <input type="text" id="satis-tutar" class="form-input" placeholder="150.000 TL" inputmode="numeric" style="width: 100%;">
                         </div>
                         <div>
-                            <label style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Açıklama:</label>
+                            <label for="satis-aciklama" style="color: #ccc; font-size: 14px; display: block; margin-bottom: 8px;">Açıklama:</label>
                             <textarea id="satis-aciklama" class="form-input" rows="3" placeholder="Açıklama" style="width: 100%;"></textarea>
                         </div>
                     </div>
